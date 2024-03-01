@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @MapperScan("cn.sxgan.core.mapper")
-@ComponentScan(basePackages = {"cn.sxgan.common",})
+@ComponentScan(basePackages = {"cn.sxgan.core", "cn.sxgan.common",})
 @ServletComponentScan(basePackages = "cn.sxgan.core.filter")
 public class ZoeyMusicApplication {
     public static void main(String[] args) {
