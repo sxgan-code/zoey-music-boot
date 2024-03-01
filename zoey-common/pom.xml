@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>zoey-common</name>
     <groupId>cn.sxgan.common</groupId>
     <artifactId>zoey-common</artifactId>
 

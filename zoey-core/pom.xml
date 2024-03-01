@@ -127,6 +127,7 @@
 
     </dependencies>
     <build>
+        <finalName>${project.name}-${zoey.version}</finalName>
         <!--使用的插件列表 。 -->
         <plugins>
             <!--plugin元素包含描述插件所需要的信息。 -->
@@ -144,7 +145,6 @@
                 </executions>
                 <!--作为DOM对象的配置 -->
                 <configuration>
-                    <finalName>zoey-music-${zoey.version}</finalName>
                     <!-- 指定打包的位置-->
                     <outputDirectory>../release/</outputDirectory>
                     <!-- 如果未指定，main将使用找到的第一个包含方法的编译类。这里指定启动类-->

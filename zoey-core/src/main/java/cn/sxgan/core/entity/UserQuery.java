@@ -1,6 +1,7 @@
 package cn.sxgan.core.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @Version: 1.0
  **/
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class UserQuery extends User {
     private Date createStartDate;
     private Date createEndDate;
