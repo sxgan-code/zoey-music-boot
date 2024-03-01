@@ -1,0 +1,62 @@
+<!--scanPeriod：实现自动刷新logback.xml配置-->
+<configuration scan="true" scanPeriod="60 seconds">
+    <property name="LOG_HOME" value="./logs/"/>
+    <property name="Console_pattern"
+              value="%white(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %logger{36} %highlight(%-5level) %boldMagenta([%file]) - %cyan(%msg%n)"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <appender name="Debug"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/app.debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="Info"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/app.info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="Error"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/app.error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${Console_pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="Debug">
+        <appender-ref ref="Debug"/>
+        <appender-ref ref="Info"/>
+        <appender-ref ref="Error"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

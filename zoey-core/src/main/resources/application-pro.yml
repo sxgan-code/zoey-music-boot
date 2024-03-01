@@ -1,0 +1,39 @@
+server:
+  port: 9090
+
+# Swagger配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    # 是否开启接口文档
+    enabled: false
+#
+spring:
+  #  cloud:
+  #    nacos:
+  #      server-addr: 192.168.0.200:8848 # 默认值为localhost:8848
+  # mail邮箱
+  mail:
+    # SMTP服务器（我用的是QQ邮箱的SMTP服务器地址，如果用的其它邮箱请另行百度搜索）
+    host: smtp.qq.com
+    # 发送验证码的邮箱（发件人的邮箱）
+    username: zoey.code@foxmail.com
+    # 授权码
+    password: xxxxxxxx
+    # 编码
+    default-encoding: utf-8
+    # 其它参数
+    properties:
+      mail:
+        smtp:
+          # 如果是用SSL方式，需要配置如下属性,使用qq邮箱的话需要开启
+          ssl:
+            enable: true
+            required: true
+          # 邮件接收时间的限制，单位毫秒
+          timeout: 10000
+          # 连接时间的限制，单位毫秒
+          connection-timeout: 10000
+          # 邮件发送时间的限制，单位毫秒
+          write-timeout: 10000
