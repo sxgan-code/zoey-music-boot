@@ -17,13 +17,11 @@ import lombok.Data;
 public class UserSessionInfo {
     @Schema(description = "用户ID", type = "Integer", example = "000000")
     private Integer id;
-    @Schema(description = "用户名称", type = "String", example = "张三")
-    private String userName;
     @Schema(description = "密码", type = "String", example = "123456")
     private String password;
     @Pattern(regexp = "^\\S{1,10}$")
     @Schema(description = "用户昵称", type = "String", example = "小张")
-    private String nickName;
+    private String userName;
     @NotEmpty
     @Email
     @Schema(description = "邮箱", type = "String", example = "123@123.com")

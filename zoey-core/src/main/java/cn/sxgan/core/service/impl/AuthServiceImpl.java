@@ -9,10 +9,10 @@ import cn.sxgan.common.constant.RedisConst;
 import cn.sxgan.common.exception.auth.AuthorityException;
 import cn.sxgan.common.response.ResponseResult;
 import cn.sxgan.common.utils.Md5Util;
-import cn.sxgan.core.entity.User;
-import cn.sxgan.core.entity.UserQuery;
+import cn.sxgan.core.entity.SysUser;
+import cn.sxgan.core.entity.SysUserQuery;
 import cn.sxgan.core.entity.UserSessionInfo;
-import cn.sxgan.core.mapper.UserMapper;
+import cn.sxgan.core.mapper.SysUserMapper;
 import cn.sxgan.core.service.IAuthService;
 import com.google.common.collect.Maps;
 import jakarta.annotation.Resource;
@@ -43,23 +43,23 @@ public class AuthServiceImpl implements IAuthService {
     RedisUtil redisUtil;
 
     @Resource
-    UserMapper userMapper;
+    SysUserMapper userMapper;
 
     @Override
     public ResponseResult<Map<String, String>> userAuthByEmail(UserSessionInfo userSessionInfo) {
         HashMap<String, String> map = Maps.newHashMap();
-        UserQuery userQuery = new UserQuery();
+        SysUserQuery userQuery = new SysUserQuery();
         userQuery.setEmail(userSessionInfo.getEmail());
-        List<User> userList = userMapper.selectUserByCondition(userQuery);
+        List<SysUser> userList = userMapper.selectUserByCondition(userQuery);
         if (userList.size() > 0) {
-            User user = userList.get(0);
+            SysUser user = userList.get(0);
             // 判断密码是否正确,加密密码与库中（user对象）的password比对是否相同
             if (Md5Util.getMD5String(userSessionInfo.getPassword()).equals(user.getPassword())) {
                 // 允许登陆，生成令牌
                 // 写入用户信息
                 HashMap<String, Object> tokenMap = new HashMap<>();
                 tokenMap.put("email", user.getEmail());
-                tokenMap.put("id", user.getId());
+                tokenMap.put("id", user.getUserId());
                 String token = JWTUtil.createToken(tokenMap, tokenKey.getBytes());
                 redisUtil.set(RedisConst.LOGIN_TOKEN_PREFIX + token, userSessionInfo, RedisConst.LOGIN_TIME_5,
                         TimeUnit.MINUTES);
@@ -108,15 +108,15 @@ public class AuthServiceImpl implements IAuthService {
             // return "验证码已过期";
         }
         // 查询邮箱是否已经注册
-        UserQuery userQuery = new UserQuery();
+        SysUserQuery userQuery = new SysUserQuery();
         userQuery.setEmail(email);
-        List<User> userList = userMapper.selectUserByCondition(userQuery);
+        List<SysUser> userList = userMapper.selectUserByCondition(userQuery);
         if (userList.size() > 0) {
             return ResponseResult.fail(Maps.newHashMap(), ExceptionStatus.EXCEPTION_STATUS_706.getExceptionCode(),
                     ExceptionStatus.EXCEPTION_STATUS_706.getExceptionMsg());
         }
         // 注册账号
-        User user = new User();
+        SysUser user = new SysUser();
         user.setUserName(RandomUtil.randomString(12));
         user.setEmail(email);
         // 加密

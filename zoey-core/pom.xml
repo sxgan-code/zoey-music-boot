@@ -26,7 +26,6 @@
             <scope>compile</scope>
         </dependency>
 
-
         <!--mysql驱动依赖-->
         <dependency>
             <groupId>com.mysql</groupId>
@@ -55,11 +54,6 @@
             <artifactId>java-jwt</artifactId>
         </dependency>
 
-        <!--单元测试的坐标-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
 
         <!--pageHelper坐标-->
         <dependency>
@@ -103,8 +97,6 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-
-
         <!-- Api文档-->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -124,7 +116,11 @@
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
-
+        <!--单元测试的坐标-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.name}-${zoey.version}</finalName>

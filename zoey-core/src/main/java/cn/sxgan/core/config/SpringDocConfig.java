@@ -26,16 +26,16 @@ public class SpringDocConfig {
 
     public Info info() {
         return new Info()
-                .title("zoey major events")
+                .title("zoey music boot")
                 .version("V1.0.0")
-                .description("zoey major events spring doc open api")
+                .description("zoey music boot spring doc open api")
                 .license(new License().name("Apache-2.0").url("https://www.apache.org/licenses/LICENSE-2.0"))
                 .contact(new Contact().name("sxgan").url("https://gitee.com/sxgan"))
                 .summary("新闻发布系统");
     }
 
     public ExternalDocumentation documentation() {
-        return new ExternalDocumentation().description("major events spring doc")
+        return new ExternalDocumentation().description("zoey music boot spring doc")
                 .url("http://localhost:8080/v3/api-docs");
     }
 

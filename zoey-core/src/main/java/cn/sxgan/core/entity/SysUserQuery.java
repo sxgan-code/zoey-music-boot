@@ -13,7 +13,7 @@ import java.util.Date;
  **/
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserQuery extends User {
+public class SysUserQuery extends SysUser {
     private Date createStartDate;
     private Date createEndDate;
     private Date updateStartDate;
