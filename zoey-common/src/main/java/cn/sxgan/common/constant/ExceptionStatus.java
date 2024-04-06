@@ -31,12 +31,14 @@ public enum ExceptionStatus {
     EXCEPTION_STATUS_712(712, "邮件发送失败，系统异常"),
 
     // 请求异常
-    EXCEPTION_STATUS_900(900, "请求参数异常，参数为空");
+    EXCEPTION_STATUS_900(900, "请求参数异常，参数为空"),
+    // 业务错误
+    EXCEPTION_STATUS_999(999, "业务错误");
 
     public static final List<ExceptionStatus> EXCEPTION_STATUS_ALL = Collections.unmodifiableList(
             Arrays.asList(EXCEPTION_STATUS_700, EXCEPTION_STATUS_701, EXCEPTION_STATUS_702, EXCEPTION_STATUS_703,
                     EXCEPTION_STATUS_704, EXCEPTION_STATUS_705, EXCEPTION_STATUS_706,
-                    EXCEPTION_STATUS_711, EXCEPTION_STATUS_712, EXCEPTION_STATUS_900)
+                    EXCEPTION_STATUS_711, EXCEPTION_STATUS_712, EXCEPTION_STATUS_900, EXCEPTION_STATUS_999)
     );
 
     /* exception code*/

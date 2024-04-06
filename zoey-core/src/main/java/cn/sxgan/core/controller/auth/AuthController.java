@@ -52,6 +52,12 @@ public class AuthController implements IAuthControllerApi {
             return ResponseResult.fail(ExceptionStatus.EXCEPTION_STATUS_900.getExceptionMsg());
         }
         String sendResult = mailSendService.sendVerifyCodeToSpecifiedEmail(email);
-        return ResponseResult.success(sendResult);
+        if (StrUtil.isBlank(sendResult)) {
+            return ResponseResult.success(sendResult);
+        } else {
+            return ResponseResult.fail(null, ExceptionStatus.EXCEPTION_STATUS_999.getExceptionCode(),
+                    sendResult);
+        }
+
     }
 }

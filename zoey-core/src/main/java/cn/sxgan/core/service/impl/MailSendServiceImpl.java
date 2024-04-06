@@ -5,6 +5,7 @@ import cn.sxgan.common.constant.ExceptionStatus;
 import cn.sxgan.common.constant.RedisConst;
 import cn.sxgan.common.exception.auth.AuthorityException;
 import cn.sxgan.common.utils.CommonUtils;
+import cn.sxgan.common.utils.TimeUtils;
 import cn.sxgan.core.service.IMailSendService;
 import jakarta.annotation.Resource;
 import jakarta.mail.internet.InternetAddress;
@@ -72,8 +73,8 @@ public class MailSendServiceImpl implements IMailSendService {
             // 发送邮件
             javaMailSender.send(message);
             log.info("mail send success");
-            redisUtil.set(captchaCacheKey, captchaCacheVal, RedisConst.LOGIN_TIME_1, TimeUnit.DAYS);
-            return "发送成功";
+            redisUtil.set(captchaCacheKey, captchaCacheVal, TimeUtils.getSecondsToMidnight(), TimeUnit.SECONDS);
+            return "";
         } catch (Exception e) {
             log.info("mail send failed");
             throw new AuthorityException(
