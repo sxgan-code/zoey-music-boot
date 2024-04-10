@@ -1,5 +1,8 @@
 package cn.sxgan.core.service;
 
+import cn.sxgan.core.entity.SysUserVO;
+import cn.sxgan.core.entity.UserSessionInfo;
+
 /**
  * @Description: 用户服务接口
  * @Author: sxgan
@@ -8,5 +11,11 @@ package cn.sxgan.core.service;
  **/
 
 public interface IUserService {
-
+    /**
+     * 通过邮箱查询用户
+     *
+     * @param currentUser 当前登录用户
+     * @return 视图对象
+     */
+    SysUserVO selectSysUserInfo(UserSessionInfo currentUser);
 }

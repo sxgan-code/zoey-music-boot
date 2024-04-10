@@ -2,6 +2,7 @@ package cn.sxgan.core.api.auth;
 
 
 import cn.sxgan.common.response.ResponseResult;
+import cn.sxgan.core.entity.SysUserVO;
 import cn.sxgan.core.entity.UserSessionInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,7 +31,7 @@ public interface IAuthControllerApi {
                     @ApiResponse(description = "返回登录结果", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Map.class))),
                     @ApiResponse(responseCode = "700~800", description = "系统权限校验业务错误")
             })
-    ResponseResult<Map<String, String>> login(UserSessionInfo userSessionInfo);
+    ResponseResult<Map<String, String>> signin(UserSessionInfo userSessionInfo);
 
     @Operation(summary = "注册", description = "注册接口",
             parameters = {
@@ -50,5 +51,12 @@ public interface IAuthControllerApi {
                     @ApiResponse(description = "返回验证码", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Map.class))),
                     @ApiResponse(responseCode = "400", description = "返回400时错误")
             })
-    ResponseResult sendVerifyCode(UserSessionInfo userSessionInfo);
+    ResponseResult<String> sendVerifyCode(UserSessionInfo userSessionInfo);
+    
+    @Operation(summary = "获取用户", description = "获取用户详细信息",
+            responses = {
+                    @ApiResponse(description = "返回用户信息视图对象", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SysUserVO.class))),
+                    @ApiResponse(responseCode = "700", description = "返回700时错误")
+            })
+    ResponseResult<SysUserVO> getSysUserInfo();
 }

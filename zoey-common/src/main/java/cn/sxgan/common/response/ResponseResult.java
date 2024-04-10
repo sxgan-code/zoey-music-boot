@@ -15,32 +15,32 @@ import java.io.Serializable;
 @Data
 @Builder
 public class ResponseResult<T> {
-
+    
     /**
      * response timestamp.
      */
     private long timestamp;
-
+    
     /**
      * response code, 200 -> OK.
      */
     private Integer status;
-
+    
     /**
      * response message.
      */
     private String message;
-
+    
     /**
      * response data size.
      */
     private Integer total;
-
+    
     /**
      * response data.
      */
     private T data;
-
+    
     /**
      * response success result wrapper.
      *
@@ -50,7 +50,7 @@ public class ResponseResult<T> {
     public static <T> ResponseResult<T> success() {
         return success(null, 0);
     }
-
+    
     /**
      * response success result wrapper.
      *
@@ -65,7 +65,23 @@ public class ResponseResult<T> {
                 .timestamp(System.currentTimeMillis())
                 .build();
     }
-
+    
+    /**
+     * response success result wrapper.
+     *
+     * @param data response data
+     * @param <T>  type of data class
+     * @return response result
+     */
+    public static <T> ResponseResult<T> success(T data) {
+        return ResponseResult.<T>builder().data(data)
+                .message(ResponseStatus.SUCCESS.getDescription())
+                .total(1)
+                .status(ResponseStatus.SUCCESS.getResponseCode())
+                .timestamp(System.currentTimeMillis())
+                .build();
+    }
+    
     /**
      * response success result wrapper.
      *
@@ -81,7 +97,8 @@ public class ResponseResult<T> {
                 .timestamp(System.currentTimeMillis())
                 .build();
     }
-
+    
+    
     /**
      * response error result wrapper.
      *
@@ -92,7 +109,7 @@ public class ResponseResult<T> {
     public static <T extends Serializable> ResponseResult<T> fail(String message) {
         return fail(null, message);
     }
-
+    
     /**
      * response error result wrapper.
      *
@@ -109,7 +126,7 @@ public class ResponseResult<T> {
                 .timestamp(System.currentTimeMillis())
                 .build();
     }
-
+    
     /**
      * response error result wrapper.
      *
@@ -126,6 +143,6 @@ public class ResponseResult<T> {
                 .timestamp(System.currentTimeMillis())
                 .build();
     }
-
-
+    
+    
 }

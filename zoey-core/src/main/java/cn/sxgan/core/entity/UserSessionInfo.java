@@ -28,4 +28,8 @@ public class UserSessionInfo {
     private String email;
     @Schema(description = "验证码", type = "String", example = "666666")
     private String verifyCode;
+    @Schema(description = "token", type = "String", example = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
+            ".eyJpZCI6IjE3NzY5MTQzMzYxMjY4ODU4ODkiLCJlbWFpbCI6InN4Z2FuQGZveG1haWwuY29tIn0" +
+            ".MeOvzfpSdaHyk2ldSFUSoOz_te5Uibx4v4fT89XSkXE")
+    private String token;
 }

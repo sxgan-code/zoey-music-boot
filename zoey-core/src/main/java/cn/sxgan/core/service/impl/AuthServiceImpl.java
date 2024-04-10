@@ -35,16 +35,16 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 public class AuthServiceImpl implements IAuthService {
-
+    
     @Value("${token.key}")
     private String tokenKey;
-
+    
     @Resource
     RedisUtil redisUtil;
-
+    
     @Resource
     SysUserMapper userMapper;
-
+    
     @Override
     public ResponseResult<Map<String, String>> userAuthByEmail(UserSessionInfo userSessionInfo) {
         HashMap<String, String> map = Maps.newHashMap();
@@ -74,7 +74,7 @@ public class AuthServiceImpl implements IAuthService {
                     ExceptionStatus.EXCEPTION_STATUS_701.getExceptionMsg());
         }
     }
-
+    
     @Override
     public ResponseResult<Map<String, String>> signupUserByEmail(UserSessionInfo userSessionInfo) {
         String email = userSessionInfo.getEmail();
@@ -84,12 +84,12 @@ public class AuthServiceImpl implements IAuthService {
             return ResponseResult.fail(Maps.newHashMap(), ExceptionStatus.EXCEPTION_STATUS_704.getExceptionCode(),
                     ExceptionStatus.EXCEPTION_STATUS_704.getExceptionMsg());
         }
-
+        
         // 查询当前邮箱的验证码并验证
         String captchaCacheVal = redisUtil.get(RedisConst.CARD_CAPTCHA_PREFIX + email, String.class);
         log.info("AuthServiceImpl.signupUserByEmail captchaCacheVal = {}", captchaCacheVal);
-
-
+        
+        
         String[] captchaCacheValArr = null;
         if (captchaCacheVal != null) {
             captchaCacheValArr = captchaCacheVal.split("_");
@@ -101,7 +101,7 @@ public class AuthServiceImpl implements IAuthService {
             return ResponseResult.fail(Maps.newHashMap(), ExceptionStatus.EXCEPTION_STATUS_705.getExceptionCode(),
                     ExceptionStatus.EXCEPTION_STATUS_705.getExceptionMsg());
         }
-
+        
         long sendTime = Long.parseLong(captchaCacheValArr[2]);
         long currentTime = System.currentTimeMillis();
         if (currentTime - sendTime > 60 * 5 * 1000) {
@@ -129,6 +129,6 @@ public class AuthServiceImpl implements IAuthService {
                     ExceptionStatus.EXCEPTION_STATUS_702.getExceptionMsg());
         }
         return ResponseResult.success(Maps.newHashMap(), 0);
-
+        
     }
 }
