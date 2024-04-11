@@ -1,5 +1,6 @@
 #!/bin/bash
-cd /home/zoey/jenkins/
+# 当前项目镜像打包后上传的位置，jenkins中的配置目录，具体查看Jenkins项目配置构建后操作Remote directory
+cd /home/zoey/docker/jenkins/project/music-boot/
 # 定义变量
 IMAGE_NAME=zoey-music-boot:1.0.0
 CONTAINER_NAME=zoey-music-boot
