@@ -2,10 +2,10 @@ spring:
   application:
     name: zoey-music-boot
   profiles:
-    #    active: pro
-    #    include: prodb
-    active: dev
-    include: devdb
+    active: pro
+    include: prodb
+#    active: dev
+#    include: devdb
 
 logging:
   config: classpath:logback.xml
