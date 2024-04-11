@@ -1,3 +1,4 @@
+[中文](README.md) | [English](README.en.md)
 <p align="center">
 	<img width="200px" height="200px" alt="logo" src="https://gitee.com/sxgan/zoey-open-images/raw/master/common/png/logo-music-wangyiyun-red.png">
 </p>
@@ -7,6 +8,9 @@
 	<a href="https://gitee.com/sxgan/zoey-music-boot"><img src="https://img.shields.io/badge/Zoey Music-v1.0.0-brightgreen.svg"></a>
 	<a href="https://gitee.com/sxgan/zoey-music-boot/raw/master/LICENSE"><img src="https://img.shields.io/badge/LICENSE-Apache License-red.svg"></a>
 </p>
+持续更新中。。。@sxgan
+
+所有资源来源于网络公开资源，仅供学习
 
 ## 平台简介
 

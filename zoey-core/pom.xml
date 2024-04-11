@@ -132,7 +132,7 @@
                 <!--作为DOM对象的配置 -->
                 <configuration>
                     <!-- 指定打包的位置-->
-                    <outputDirectory>../release/</outputDirectory>
+                    <outputDirectory>./build/release/</outputDirectory>
                     <!-- 如果未指定，main将使用找到的第一个包含方法的编译类。这里指定启动类-->
                     <mainClass>cn.sxgan.core.ZoeyMusicApplication</mainClass>
                     <compilerArguments>
