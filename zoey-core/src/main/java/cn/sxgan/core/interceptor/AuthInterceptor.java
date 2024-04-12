@@ -72,7 +72,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         log.warn("The request is not login");
         response.setContentType("application/json; charset=utf-8");
         PrintWriter writer = response.getWriter();
-        response.setStatus(444); // 权限不足
+        response.setStatus(200); // 权限不足
         writer.write(JSONUtil.toJsonStr(
                 ResponseResult.fail(
                         null,

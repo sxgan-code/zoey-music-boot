@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="60 seconds">
     <property name="LOG_HOME" value="./logs/"/>
     <property name="Console_pattern"
-              value="%white(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %logger{36} %highlight(%-5level) %boldMagenta([%file]) - %cyan(%msg%n)"/>
+              value="%white(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %green([%thread]) %logger{36} %boldMagenta([%file]) - %cyan(%msg%n)"/>
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <appender name="Debug"
@@ -31,7 +31,19 @@
             <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
         </encoder>
     </appender>
-
+    <appender name="Warn"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/app.warn.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
     <appender name="Error"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -55,6 +67,7 @@
     <root level="Debug">
         <appender-ref ref="Debug"/>
         <appender-ref ref="Info"/>
+        <appender-ref ref="Warn"/>
         <appender-ref ref="Error"/>
         <appender-ref ref="STDOUT"/>
     </root>
