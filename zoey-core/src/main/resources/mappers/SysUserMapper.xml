@@ -13,6 +13,7 @@
         <result column="sex" property="sex"/>
         <result column="avatar" property="avatar"/>
         <result column="password" property="password"/>
+        <result column="personal_sign" property="personalSign"/>
         <result column="salt" property="salt"/>
         <result column="status" property="status"/>
         <result column="del_flag" property="delFlag"/>
@@ -28,9 +29,9 @@
 
     <!-- 通用查询结果列 -->
     <sql id="BaseColumnList">
-        user_id
-        , dept_id, user_name, user_type, email, phone_number, sex, avatar, password, salt, status,
-        del_flag, login_ip, login_date, pwd_update_date, create_by, update_by, remark, create_time, update_time
+                user_id, dept_id, user_name, user_type, email, phone_number, sex, avatar, password, personal_sign, salt,
+                status, del_flag, login_ip, login_date, pwd_update_date, create_by, update_by, remark, create_time,
+                update_time
     </sql>
     <sql id="ConditionSql">
         <where>
@@ -60,6 +61,9 @@
             </if>
             <if test="password != null">
                 and password = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="personalSign != null">
+                and personal_sign = #{personalSign,jdbcType=VARCHAR}
             </if>
             <if test="salt != null">
                 and salt = #{salt,jdbcType=VARCHAR}

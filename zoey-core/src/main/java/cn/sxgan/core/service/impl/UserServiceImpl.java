@@ -9,6 +9,7 @@ import cn.sxgan.core.entity.UserSessionInfo;
 import cn.sxgan.core.entity.converts.SysUserConvert;
 import cn.sxgan.core.mapper.SysUserMapper;
 import cn.sxgan.core.service.IUserService;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,15 @@ public class UserServiceImpl implements IUserService {
             return null;
         }
         return sysUserVO;
+    }
+    
+    @Override
+    public String updateSysUserInfo(SysUserVO sysUserVO) {
+        if (sysUserVO == null || StrUtil.isBlank(sysUserVO.getEmail())) {
+            return null;
+        }
+        SysUser sysUser = SysUserConvert.INSTANCE.sysUserVOToDAO(sysUserVO);
+        int bool = userMapper.update(sysUser, new UpdateWrapper<SysUser>().set("email", sysUser.getEmail()));
+        return bool > 0 ? "用户更新完成" : null;
     }
 }

@@ -59,4 +59,14 @@ public interface IAuthControllerApi {
                     @ApiResponse(responseCode = "700", description = "返回700时错误")
             })
     ResponseResult<SysUserVO> getSysUserInfo();
+    
+    @Operation(summary = "更新用户", description = "更新用户",
+            parameters = {
+                    @Parameter(name = "sysUserVO", description = "用户信息视图对象", content = @Content(mediaType = "application/json", schema = @Schema(contentSchema = SysUserVO.class)))
+            },
+            responses = {
+                    @ApiResponse(description = "返回提示信息", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+                    @ApiResponse(responseCode = "707", description = "返回707时错误")
+            })
+    ResponseResult<String> updateSysUserInfo(SysUserVO sysUserVO);
 }

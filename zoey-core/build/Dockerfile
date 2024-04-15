@@ -1,4 +1,4 @@
-# 使用官方 OpenJDK 17 映像作为基础镜像
+# 使用官方 OpenJDK 21 映像作为基础镜像
 FROM openjdk:21
 
 # 将当前目录下的 jar 包复制到容器中的 /app 目录下

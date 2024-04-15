@@ -24,6 +24,8 @@ public class SysUserVO {
     private String email;
     @Schema(description = "手机号码", type = "string", example = "")
     private String phoneNumber;
+    @Schema(description = "个性签名", type = "string", example = "")
+    private String personalSign;
     @Schema(description = "用户性别（0男 1女 2未知）", type = "string", example = "")
     private String sex;
     @Schema(description = "头像路径", type = "string", example = "")

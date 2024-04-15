@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -61,8 +62,8 @@ public class AuthServiceImpl implements IAuthService {
                 tokenMap.put("email", user.getEmail());
                 tokenMap.put("id", user.getUserId());
                 String token = JWTUtil.createToken(tokenMap, tokenKey.getBytes());
-                redisUtil.set(RedisConst.LOGIN_TOKEN_PREFIX + token, userSessionInfo, RedisConst.LOGIN_TIME_5,
-                        TimeUnit.MINUTES);
+                redisUtil.set(RedisConst.LOGIN_TOKEN_PREFIX + token, userSessionInfo, RedisConst.LOGIN_TIME_1,
+                        TimeUnit.DAYS);
                 map.put("token", token);
                 return ResponseResult.success(map, 0);
             } else {
@@ -117,7 +118,7 @@ public class AuthServiceImpl implements IAuthService {
         }
         // 注册账号
         SysUser user = new SysUser();
-        user.setUserName(RandomUtil.randomString(12));
+        user.setUserName(RandomUtil.randomString(12).toUpperCase(Locale.ROOT));
         user.setEmail(email);
         // 加密
         String md5PasswordString = Md5Util.getMD5String(password);

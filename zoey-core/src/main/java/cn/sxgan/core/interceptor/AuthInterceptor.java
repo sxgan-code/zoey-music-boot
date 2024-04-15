@@ -30,10 +30,10 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
-
+    
     @Resource
     RedisUtil redisUtil;
-
+    
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
@@ -58,10 +58,10 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
         RequestHolder.add(user);
         // 重置登陆时间
-        redisUtil.set(RedisConst.LOGIN_TOKEN_PREFIX + token, user, RedisConst.LOGIN_TIME_5, TimeUnit.MINUTES);
+        redisUtil.set(RedisConst.LOGIN_TOKEN_PREFIX + token, user, RedisConst.LOGIN_TIME_1, TimeUnit.DAYS);
         return true;
     }
-
+    
     /**
      * 设置验证失败，跳转登陆
      *
@@ -79,6 +79,6 @@ public class AuthInterceptor implements HandlerInterceptor {
                         ExceptionStatus.EXCEPTION_STATUS_700.getExceptionCode(),
                         ExceptionStatus.EXCEPTION_STATUS_700.getExceptionMsg())));
     }
-
-
+    
+    
 }

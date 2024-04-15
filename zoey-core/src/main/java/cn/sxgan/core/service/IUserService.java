@@ -18,4 +18,12 @@ public interface IUserService {
      * @return 视图对象
      */
     SysUserVO selectSysUserInfo(UserSessionInfo currentUser);
+    
+    /**
+     * 通过邮箱更新用户
+     *
+     * @param sysUserVO
+     * @return
+     */
+    String updateSysUserInfo(SysUserVO sysUserVO);
 }

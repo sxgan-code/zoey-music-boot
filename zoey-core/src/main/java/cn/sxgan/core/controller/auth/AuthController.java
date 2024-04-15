@@ -82,5 +82,15 @@ public class AuthController implements IAuthControllerApi {
         return ResponseResult.success(sysUserVO);
     }
     
+    @PostMapping("/updateSysUserInfo")
+    public ResponseResult<String> updateSysUserInfo(@RequestBody SysUserVO sysUserVO) {
+        String result = userService.updateSysUserInfo(sysUserVO);
+        if (result == null) {
+            return ResponseResult.fail(null, ExceptionStatus.EXCEPTION_STATUS_707.getExceptionCode(),
+                    ExceptionStatus.EXCEPTION_STATUS_707.getExceptionMsg());
+        }
+        return ResponseResult.success(result);
+    }
+    
     
 }

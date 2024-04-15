@@ -38,5 +38,16 @@ public interface SysUserConvert {
      */
     List<SysUserVO> sysUserListToVOList(List<SysUser> sysUserList);
     
+    /**
+     * 将SysUserVO转换成SysUser
+     *
+     * @param sysUserVO 用户视图对象
+     * @return 用户实体对象
+     */
+    @Mappings({
+            @Mapping(source = "userId", target = "userId")
+    })
+    SysUser sysUserVOToDAO(SysUserVO sysUserVO);
+    
     
 }

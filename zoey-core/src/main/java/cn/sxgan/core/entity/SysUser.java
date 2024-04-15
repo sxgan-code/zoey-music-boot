@@ -35,6 +35,8 @@ public class SysUser {
     private String avatar;
     @Schema(description = "密码", type = "string", example = "")
     private String password;
+    @Schema(description = "个性签名", type = "string", example = "")
+    private String personalSign;
     @Schema(description = "盐加密", type = "string", example = "")
     private String salt;
     @Schema(description = "帐号状态（0正常 1停用）", type = "string", example = "")
