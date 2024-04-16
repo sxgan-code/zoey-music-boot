@@ -13,7 +13,7 @@ import java.util.Date;
  **/
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysConfigQuery extends SysConfig {
+public class SysCodeQuery extends SysCode {
     private Date createStartDate;
     private Date createEndDate;
     private Date updateStartDate;

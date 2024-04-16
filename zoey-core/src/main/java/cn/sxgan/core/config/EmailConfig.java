@@ -1,8 +1,8 @@
 package cn.sxgan.core.config;
 
-import cn.sxgan.core.entity.SysConfig;
-import cn.sxgan.core.entity.SysConfigQuery;
-import cn.sxgan.core.mapper.SysConfigMapper;
+import cn.sxgan.core.entity.SysCode;
+import cn.sxgan.core.entity.SysCodeQuery;
+import cn.sxgan.core.mapper.SysCodeMapper;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,17 +20,17 @@ import java.util.List;
 @Configuration
 public class EmailConfig {
     @Resource
-    private SysConfigMapper sysConfigMapper;
+    private SysCodeMapper sysCodeMapper;
     
     @Bean
     public JavaMailSender getJavaMailSender() {
-        SysConfigQuery sysConfigQuery = new SysConfigQuery();
-        sysConfigQuery.setConfigKey("email.password");
-        List<SysConfig> sysConfigs = sysConfigMapper.selectConfigByCondition(sysConfigQuery);
+        SysCodeQuery sysCodeQuery = new SysCodeQuery();
+        sysCodeQuery.setConfigKey("email.password");
+        List<SysCode> sysCodes = sysCodeMapper.selectConfigByCondition(sysCodeQuery);
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.qq.com");
         mailSender.setUsername("zoey.code@foxmail.com");
-        mailSender.setPassword(sysConfigs.getFirst().getConfigValue());
+        mailSender.setPassword(sysCodes.getFirst().getConfigValue());
         mailSender.setDefaultEncoding("utf-8");
         mailSender.setProtocol("smtp");
         mailSender.getJavaMailProperties().put("mail.smtp.ssl.enable", "true");

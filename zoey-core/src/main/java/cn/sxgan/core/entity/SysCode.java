@@ -14,22 +14,24 @@ import java.util.Date;
  * @Version: 1.0
  **/
 @Data
-@TableName(value = "sys_config")
-@Schema(name = "SysConfig", description = "系统配置实体")
-public class SysConfig {
+@TableName(value = "sys_code")
+@Schema(name = "SysCode", description = "系统代码配置实体")
+public class SysCode {
     @TableId
-    @Schema(description = "配置ID", type = "Integer")
-    private Integer id;
+    @Schema(description = "配置ID", type = "String")
+    private Long configId;
     @Schema(description = "配置的key", type = "String")
     private String configKey;
     @Schema(description = "配置的值。如果有多个，用逗号隔开", type = "String")
     private String configValue;
+    @Schema(description = "配置类型", type = "String")
+    private String configType;
     @Schema(description = "配置说明", type = "String")
     private String description;
-    @Schema(description = "配置创建时间", type = "Date")
+    @Schema(description = "配置创建时间", type = "String")
     private Date createTime;
-    @Schema(description = "配置更新时间", type = "Date")
+    @Schema(description = "配置更新时间", type = "String")
     private Date updateTime;
     @Schema(description = "删除标志：0-未删除，1-已删除", type = "Integer")
-    private Integer isDelete;
+    private Integer delFlag;
 }

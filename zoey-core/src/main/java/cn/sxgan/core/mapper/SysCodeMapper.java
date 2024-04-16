@@ -1,7 +1,7 @@
 package cn.sxgan.core.mapper;
 
-import cn.sxgan.core.entity.SysConfig;
-import cn.sxgan.core.entity.SysConfigQuery;
+import cn.sxgan.core.entity.SysCode;
+import cn.sxgan.core.entity.SysCodeQuery;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * @Version: 1.0
  **/
 
-public interface SysConfigMapper extends BaseMapper<SysConfig> {
+public interface SysCodeMapper extends BaseMapper<SysCode> {
     
-    List<SysConfig> selectConfigByCondition(SysConfigQuery sysConfigQuery);
+    List<SysCode> selectConfigByCondition(SysCodeQuery sysCodeQuery);
 }
