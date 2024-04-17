@@ -38,6 +38,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         String token = request.getHeader("Authorization");
+        log.info("current token = {}", token);
         if (StrUtil.isBlank(token)) {
             returnLogin(response);
             return false;

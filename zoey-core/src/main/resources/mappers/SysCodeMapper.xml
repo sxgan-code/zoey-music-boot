@@ -53,7 +53,7 @@
         </where>
     </sql>
     <select id="selectConfigByCondition" resultType="cn.sxgan.core.entity.SysCode" resultMap="BaseResultMap"
-            parameterType="cn.sxgan.core.entity.SysCodeQuery">
+            parameterType="cn.sxgan.core.entity.query.SysCodeQuery">
         select
         <include refid="BaseColumnList"/>
         from sys_code

@@ -1,19 +1,20 @@
-package cn.sxgan.core.entity;
+package cn.sxgan.core.entity.query;
 
+import cn.sxgan.core.entity.SysAuth;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
 /**
- * @Description: 用户实体查询类
+ * @Description: 角色权限表查询类
  * @Author: sxgan
  * @Date: 2024/3/1 15:11
  * @Version: 1.0
  **/
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUserQuery extends SysUser {
+public class SysAuthQuery extends SysAuth {
     private Date createStartDate;
     private Date createEndDate;
     private Date updateStartDate;

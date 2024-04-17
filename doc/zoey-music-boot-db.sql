@@ -56,7 +56,7 @@ create table sys_user
     update_time     datetime     not null default current_timestamp on update current_timestamp comment '更新时间',
     del_flag        tinyint(1)   not null default 0 comment '删除标志（0代表存在 1代表删除）',
     primary key (user_id),
-    unique key un_email_key (email)
+    unique key uk_email (email)
 ) engine = innodb
   default charset = utf8mb4
   auto_increment = 10000 comment = '用户信息表';
@@ -74,7 +74,7 @@ create table sys_dept
     update_time datetime     not null default current_timestamp on update current_timestamp comment '更新时间',
     del_flag    tinyint(1)   not null default 0 comment '删除标志：0-未删除，1-已删除',
     primary key (dept_id),
-    unique key un_dept_no (dept_no)
+    unique key uk_dept_no (dept_no)
 ) engine = innodb
   default charset = utf8mb4
   auto_increment = 1000 comment = '部门表';
@@ -92,7 +92,7 @@ create table sys_role_user_relate
     update_time  datetime   not null default current_timestamp on update current_timestamp comment '更新时间',
     del_flag     tinyint(1) not null default 0 comment '删除标志：0-未删除，1-已删除',
     primary key (role_user_id),
-    unique key un_role_user_key (role_id, user_id)
+    unique key uk_role_user (role_id, user_id)
 ) engine = innodb
   default charset = utf8mb4
   auto_increment = 1000 comment = '用户角色关联表';
@@ -162,7 +162,7 @@ create table music_list_song_relate
     create_time  datetime   not null default current_timestamp comment '创建时间',
     update_time  datetime   not null default current_timestamp on update current_timestamp comment '更新时间',
     primary key (list_song_id),
-    unique key un_list_song_key (list_id, song_id)
+    unique key uk_list_song (list_id, song_id)
 ) engine = innodb
   default charset = utf8mb4
   auto_increment = 0 comment = '歌曲歌单关联表';
@@ -215,7 +215,7 @@ drop table if exists music_album;
 create table music_album
 (
     album_id     bigint(8)    not null auto_increment comment '专辑ID',
-    album_name   varchar(50)  not null default '' comment '专辑名称',
+    album_name varchar(255) not null default '' comment '专辑名称',
     album_pic    varchar(255) not null default '' comment '专辑图片地址',
     release_date datetime     not null default current_timestamp comment '专辑发行日期',
     singer_id    bigint(10)   not null default -1 comment '歌手ID',

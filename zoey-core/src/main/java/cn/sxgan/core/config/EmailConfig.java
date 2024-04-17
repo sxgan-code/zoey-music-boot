@@ -1,7 +1,7 @@
 package cn.sxgan.core.config;
 
 import cn.sxgan.core.entity.SysCode;
-import cn.sxgan.core.entity.SysCodeQuery;
+import cn.sxgan.core.entity.query.SysCodeQuery;
 import cn.sxgan.core.mapper.SysCodeMapper;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;

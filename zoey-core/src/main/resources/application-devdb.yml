@@ -52,6 +52,8 @@ mybatis-plus:
   type-aliases-package: cn.sxgan.core.entity
   # 加载Mybatis映射文件
   mapper-locations: classpath:mappers/*Mapper.xml
+  global-config:
+    banner: false
   configuration:
     map-underscore-to-camel-case: true
     #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

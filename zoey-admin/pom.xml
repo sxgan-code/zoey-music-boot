@@ -17,5 +17,17 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>cn.sxgan.common</groupId>
+            <artifactId>zoey-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- 音频处理包 -->
+        <dependency>
+            <groupId>net.jthink</groupId>
+            <artifactId>jaudiotagger</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+    </dependencies>
 </project>

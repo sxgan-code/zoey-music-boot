@@ -25,6 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/v3/api-docs")
                 .excludePathPatterns("/card/auth/signin")
                 .excludePathPatterns("/card/auth/signup")
-                .excludePathPatterns("/card/auth/mailVerifyCode");
+                .excludePathPatterns("/card/auth/mailVerifyCode")
+                .excludePathPatterns("/static/**");
     }
 }

@@ -1,7 +1,7 @@
 package cn.sxgan.core.mapper;
 
 import cn.sxgan.core.entity.SysCode;
-import cn.sxgan.core.entity.SysCodeQuery;
+import cn.sxgan.core.entity.query.SysCodeQuery;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;

@@ -107,7 +107,7 @@
         </where>
     </sql>
     <select id="selectUserByCondition" resultType="cn.sxgan.core.entity.SysUser" resultMap="BaseResultMap"
-            parameterType="cn.sxgan.core.entity.SysUserQuery">
+            parameterType="cn.sxgan.core.entity.query.SysUserQuery">
         select
         <include refid="BaseColumnList"/>
         from sys_user

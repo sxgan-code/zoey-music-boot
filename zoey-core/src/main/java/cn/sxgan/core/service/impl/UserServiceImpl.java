@@ -3,10 +3,10 @@ package cn.sxgan.core.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import cn.sxgan.core.entity.SysUser;
-import cn.sxgan.core.entity.SysUserQuery;
 import cn.sxgan.core.entity.SysUserVO;
 import cn.sxgan.core.entity.UserSessionInfo;
 import cn.sxgan.core.entity.converts.SysUserConvert;
+import cn.sxgan.core.entity.query.SysUserQuery;
 import cn.sxgan.core.mapper.SysUserMapper;
 import cn.sxgan.core.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;

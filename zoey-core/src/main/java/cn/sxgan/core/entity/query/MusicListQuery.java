@@ -1,19 +1,20 @@
-package cn.sxgan.core.entity;
+package cn.sxgan.core.entity.query;
 
+import cn.sxgan.core.entity.MusicList;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
 /**
- * @Description: 系统配置查询对象
+ * @Description: 歌单表查询类
  * @Author: sxgan
- * @Date: 2024-04-10 22:47
+ * @Date: 2024/3/1 15:11
  * @Version: 1.0
  **/
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysCodeQuery extends SysCode {
+public class MusicListQuery extends MusicList {
     private Date createStartDate;
     private Date createEndDate;
     private Date updateStartDate;
