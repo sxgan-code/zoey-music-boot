@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.sxgan.core.mapper.ISysRoleMapper">
+    <resultMap id="BaseResultMap" type="cn.sxgan.core.entity.SysRole">
+        <result property="roleId" column="role_id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="BaseColumnList">
+        role_id,
+            role_name,
+            create_time,
+            update_time,
+            del_flag
+    </sql>
+    <sql id="ConditionSql">
+        <where>
+            <if test="roleId != null">
+                and role_id = #{roleId,jdbcType=INT}
+            </if>
+            <if test="roleName != null">
+                and role_name = #{roleName,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=DATETIME}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=DATETIME}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag,jdbcType=TINYINT}
+            </if>
+            <if test="createStartDate != null">
+                and create_time <![CDATA[ >= ]]> #{createStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createEndDate != null">
+                and create_time <![CDATA[ <= ]]> #{createEndDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateStartDate != null">
+                and update_time <![CDATA[ >= ]]> #{updateStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateEndDate != null">
+                and update_time <![CDATA[ <= ]]> #{updateEndDate,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </sql>
+    <select id="selectSysRoleByCondition" resultType="cn.sxgan.core.entity.SysRole" resultMap="BaseResultMap"
+            parameterType="cn.sxgan.core.entity.query.SysRoleQuery">
+        select
+        <include refid="BaseColumnList"/>
+        from sys_role
+        <include refid="ConditionSql"/>
+    </select>
+</mapper>
