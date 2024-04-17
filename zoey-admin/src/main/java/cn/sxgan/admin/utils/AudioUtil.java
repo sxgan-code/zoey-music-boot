@@ -22,6 +22,19 @@ public class AudioUtil {
         String dirurl = System.getProperty("user.dir");
         dirurl = dirurl.replaceAll("\\\\", "/");
         File file = new File(dirurl + "/resources/songs/");
+        File songFileData = new File(dirurl + "/doc/music_song_data.sql");
+        File albumFileData = new File(dirurl + "/doc/music_album_data.sql");
+        File singerFileData = new File(dirurl + "/doc/music_singer_data.sql");
+        
+        if (songFileData.exists()) {
+            songFileData.delete();
+        }
+        if (albumFileData.exists()) {
+            albumFileData.delete();
+        }
+        if (singerFileData.exists()) {
+            singerFileData.delete();
+        }
         File[] files = file.listFiles();
         for (File file1 : files) {
 //            System.out.println(file1.getAbsolutePath());
@@ -97,7 +110,7 @@ public class AudioUtil {
         Long singerId = SINGER_ID;
         StringBuffer sb = new StringBuffer();
         sb.append("insert into music_singer(singer_id, singer_name, singer_pic, address)" +
-                " value (" + singerId + ",'" + singerName + "','/resources/image/singerImg/" + singerName + ".png','中国上海');\n");
+                " value (" + singerId + ",'" + singerName + "','/image/singerImg/" + singerName + ".png','中国上海');\n");
         FileUtils.writeADocument(sb.toString(), dirurl + "/doc/music_singer_data.sql", true);
         return singerId;
     }
@@ -113,7 +126,7 @@ public class AudioUtil {
         Long albumId = ALBUM_ID;
         StringBuffer sb = new StringBuffer();
         sb.append("insert into music_album(album_id, album_name, album_pic, release_date, singer_id)" +
-                " value (" + albumId + ",'" + albumName + "','" + relativePath + "','" + CommonUtils.getDateString() + "'," + singerId + ");\n");
+                " value (" + albumId + ",'" + albumName + "','" + relativePath.substring(10) + "','" + CommonUtils.getDateString() + "'," + singerId + ");\n");
         FileUtils.writeADocument(sb.toString(), dirurl + "/doc/music_album_data.sql", true);
         return ALBUM_ID;
     }
@@ -131,8 +144,8 @@ public class AudioUtil {
         sb.append("insert into music_song(song_id, song_name, song_url, song_pic, lyric_url, song_style, release_date, album_id, singer_id) value(");
         sb.append(songId);
         sb.append(",'" + musicName);
-        sb.append("','/" + path);
-        sb.append("','/resources/image/songImg/" + musicName + ".png");
+        sb.append("','" + path.substring(9));
+        sb.append("','/image/songImg/" + musicName + ".png");
         sb.append("','");
         sb.append("','#流行，#怀旧");
         sb.append("','" + CommonUtils.getDateString());
