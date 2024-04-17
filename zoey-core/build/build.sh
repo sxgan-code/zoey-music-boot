@@ -25,7 +25,7 @@ docker build --no-cache -t $IMAGE_NAME .
 BUILD_ID=dontKillMe
 # 启动容器
 echo "Starting $CONTAINER_NAME container..."
-docker run --restart=always --network zoey-network -v ./logs:/logs -v ./resources:/resources -d --name $CONTAINER_NAME -p 9090:9090 $IMAGE_NAME
+docker run --restart=always --network zoey-network -v ./logs:/logs -d --name $CONTAINER_NAME -p 9090:9090 $IMAGE_NAME
 
 # 判断容器是否成功启动
 if [ $(docker ps -q -f name=$CONTAINER_NAME) ]; then
