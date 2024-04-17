@@ -15,7 +15,7 @@ public class StaticResourceConfig {
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
                 String userDir = System.getProperty("user.dir");
-                String fileUrl = "file:" + userDir + "/";
+                String fileUrl = userDir + "/resources";
                 log.info("当前项目根目录为：{}", fileUrl);
                 registry.addResourceHandler("/static/**").addResourceLocations(fileUrl);
             }
