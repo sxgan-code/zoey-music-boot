@@ -1,8 +1,20 @@
 package cn.sxgan.core.service.impl;
 
+import cn.sxgan.common.response.ResponseResult;
+import cn.sxgan.core.entity.MusicSong;
+import cn.sxgan.core.entity.converts.IMusicSongConvert;
+import cn.sxgan.core.entity.query.MusicListQuery;
+import cn.sxgan.core.entity.vo.MusicListVO;
+import cn.sxgan.core.entity.vo.MusicSongVO;
+import cn.sxgan.core.mapper.IMusicListSongRelateMapper;
+import cn.sxgan.core.mapper.IMusicSongMapper;
 import cn.sxgan.core.service.IMusicSongService;
+import com.google.common.collect.Lists;
+import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Description: 歌曲表服务实现类
@@ -13,5 +25,23 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class MusicSongServiceImpl implements IMusicSongService {
-
+    
+    @Resource
+    IMusicListSongRelateMapper iMusicListSongRelateMapper;
+    
+    @Resource
+    IMusicSongMapper musicSongMapper;
+    
+    @Override
+    public ResponseResult<List<MusicSongVO>> getSongs(MusicListVO musicListVO) {
+        Long listId = musicListVO.getListId();
+        // 查询关联歌曲列表
+        MusicListQuery musicListQuery = new MusicListQuery();
+        musicListQuery.setListId(listId);
+        List<MusicSong> musicSongs = Lists.newArrayList();
+        musicSongs = musicSongMapper.selectSongBySongListId(musicListQuery);
+        // 转换为VO
+        List<MusicSongVO> musicSongVOS = IMusicSongConvert.INSTANCE.convertList(musicSongs);
+        return ResponseResult.success(musicSongVOS, musicSongVOS.size());
+    }
 }

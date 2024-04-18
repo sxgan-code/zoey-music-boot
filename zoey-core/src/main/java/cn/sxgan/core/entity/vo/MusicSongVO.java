@@ -1,8 +1,10 @@
 package cn.sxgan.core.entity.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +17,7 @@ import java.util.Date;
 @Data
 @Schema(name = "MusicSongVO", description = "歌曲表")
 public class MusicSongVO implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     
     @Schema(description = "歌曲ID")
@@ -29,6 +32,9 @@ public class MusicSongVO implements Serializable {
     @Schema(description = "歌曲图片地址")
     private String songPic;
     
+    @Schema(description = "是否喜欢：0-不喜欢，1-喜欢")
+    private String isLike;
+    
     @Schema(description = "歌词文件地址")
     private String lyricUrl;
     
@@ -36,6 +42,7 @@ public class MusicSongVO implements Serializable {
     private String songStyle;
     
     @Schema(description = "歌曲发行时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date releaseDate;
     
     @Schema(description = "所属专辑")
@@ -48,9 +55,11 @@ public class MusicSongVO implements Serializable {
     private Integer delFlag;
     
     @Schema(description = "创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     
     @Schema(description = "更新时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
     
     

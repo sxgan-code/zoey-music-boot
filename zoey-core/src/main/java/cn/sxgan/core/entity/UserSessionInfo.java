@@ -16,7 +16,7 @@ import lombok.Data;
 @Schema(name = "UserSessionInfo", description = "用户全局会话对象")
 public class UserSessionInfo {
     @Schema(description = "用户ID", type = "Integer", example = "000000")
-    private Integer id;
+    private Long id;
     @Schema(description = "密码", type = "String", example = "123456")
     private String password;
     @Pattern(regexp = "^\\S{1,10}$")

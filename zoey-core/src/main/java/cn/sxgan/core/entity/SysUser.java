@@ -1,5 +1,6 @@
 package cn.sxgan.core.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,7 +19,8 @@ import java.util.Date;
 @TableName(value = "sys_user")
 @Schema(name = "SysUser", description = "用户实体类")
 public class SysUser {
-    @TableId
+    // 指定主键使用数据库ID自增策略
+    @TableId(type = IdType.AUTO)
     @Schema(description = "用户ID", type = "Long")
     private Long userId;
     @Schema(description = "用户昵称", type = "String")

@@ -27,7 +27,6 @@ public class UserSessionFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
-        log.info("httpRequest = {}", httpRequest);
         RequestHolder.add(httpRequest);
         filterChain.doFilter(servletRequest, servletResponse);
     }

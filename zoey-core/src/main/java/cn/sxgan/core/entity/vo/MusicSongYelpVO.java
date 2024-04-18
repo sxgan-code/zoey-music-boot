@@ -3,6 +3,7 @@ package cn.sxgan.core.entity.vo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +16,7 @@ import java.util.Date;
 @Data
 @Schema(name = "MusicSongYelpVO", description = "歌曲评论表")
 public class MusicSongYelpVO implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     
     @Schema(description = "歌曲点评ID")

@@ -1,5 +1,6 @@
 package cn.sxgan.core.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,7 +18,8 @@ import java.util.Date;
 @TableName(value = "sys_code")
 @Schema(name = "SysCode", description = "系统代码配置实体")
 public class SysCode {
-    @TableId
+    // 指定主键使用数据库ID自增策略
+    @TableId(type = IdType.AUTO)
     @Schema(description = "配置ID", type = "String")
     private Long configId;
     @Schema(description = "配置的key", type = "String")

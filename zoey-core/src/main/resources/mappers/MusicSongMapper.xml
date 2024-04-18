@@ -90,4 +90,14 @@
         from music_song
         <include refid="ConditionSql"/>
     </select>
+
+    <select id="selectSongBySongListId" resultType="cn.sxgan.core.entity.MusicSong" resultMap="BaseResultMap"
+            parameterType="cn.sxgan.core.entity.query.MusicListQuery">
+        <!--@mbg.generated-->
+        select
+        <include refid="BaseColumnList"/>
+        from music_song s
+        where s.song_id in (select sr.song_id from music_list_song_relate sr where sr.list_id =
+        #{listId,jdbcType=BIGINT})
+    </select>
 </mapper>

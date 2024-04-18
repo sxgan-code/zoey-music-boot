@@ -1,5 +1,6 @@
 package cn.sxgan.core.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,7 +21,8 @@ public class MusicSong {
     /**
      * 歌曲ID
      */
-    @TableId
+    // 指定主键使用数据库ID自增策略
+    @TableId(type = IdType.AUTO)
     @Schema(description = "歌曲ID", type = "Long")
     private Long songId;
     

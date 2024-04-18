@@ -62,6 +62,8 @@ public class AuthServiceImpl implements IAuthService {
                 tokenMap.put("email", user.getEmail());
                 tokenMap.put("id", user.getUserId());
                 String token = JWTUtil.createToken(tokenMap, tokenKey.getBytes());
+                userSessionInfo.setId(user.getUserId());
+                userSessionInfo.setUserName(user.getUserName());
                 redisUtil.set(RedisConst.LOGIN_TOKEN_PREFIX + token, userSessionInfo, RedisConst.LOGIN_TIME_1,
                         TimeUnit.DAYS);
                 map.put("token", token);

@@ -34,7 +34,7 @@
                 and list_name = #{listName,jdbcType=VARCHAR}
             </if>
             <if test="listType != null">
-                and list_type = #{listType,jdbcType=INT}
+                and list_type = #{listType,jdbcType=INTEGER}
             </if>
             <if test="listInfo != null">
                 and list_info = #{listInfo,jdbcType=VARCHAR}

@@ -1,6 +1,7 @@
 package cn.sxgan.core.mapper;
 
 import cn.sxgan.core.entity.MusicSong;
+import cn.sxgan.core.entity.query.MusicListQuery;
 import cn.sxgan.core.entity.query.MusicSongQuery;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,4 +17,6 @@ import java.util.List;
 @Mapper
 public interface IMusicSongMapper extends BaseMapper<MusicSong> {
     List<MusicSong> selectMusicSongByCondition(MusicSongQuery query);
+    
+    List<MusicSong> selectSongBySongListId(MusicListQuery query);
 }
