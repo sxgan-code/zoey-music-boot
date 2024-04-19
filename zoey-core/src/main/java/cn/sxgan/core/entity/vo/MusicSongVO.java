@@ -1,5 +1,6 @@
 package cn.sxgan.core.entity.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -62,5 +63,11 @@ public class MusicSongVO implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
     
+    @Schema(description = "歌手信息")
+    @TableField(exist = false)
+    private MusicSingerVO musicSinger;
     
+    @Schema(description = "专辑信息")
+    @TableField(exist = false)
+    private MusicAlbumVO musicAlbum;
 }

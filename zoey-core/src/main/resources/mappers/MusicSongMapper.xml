@@ -15,6 +15,25 @@
         <result property="delFlag" column="del_flag"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <association property="musicSinger" javaType="cn.sxgan.core.entity.MusicSinger">
+            <result property="singerId" column="singer_id"/>
+            <result property="singerName" column="singer_name"/>
+            <result property="singerPic" column="singer_pic"/>
+            <result property="address" column="address"/>
+            <result property="delFlag" column="del_flag"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+        </association>
+        <association property="musicAlbum" javaType="cn.sxgan.core.entity.MusicAlbum">
+            <result property="albumId" column="album_id"/>
+            <result property="albumName" column="album_name"/>
+            <result property="albumPic" column="album_pic"/>
+            <result property="releaseDate" column="release_date"/>
+            <result property="singerId" column="singer_id"/>
+            <result property="delFlag" column="del_flag"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+        </association>
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="BaseColumnList">
@@ -94,10 +113,11 @@
     <select id="selectSongBySongListId" resultType="cn.sxgan.core.entity.MusicSong" resultMap="BaseResultMap"
             parameterType="cn.sxgan.core.entity.query.MusicListQuery">
         <!--@mbg.generated-->
-        select
-        <include refid="BaseColumnList"/>
-        from music_song s
-        where s.song_id in (select sr.song_id from music_list_song_relate sr where sr.list_id =
-        #{listId,jdbcType=BIGINT})
+        select *
+        from music_song song
+        left join music_singer singer on song.singer_id = singer.singer_id
+        left join music_album album on song.album_id = album.album_id
+        where song.song_id in (select sr.song_id from music_list_song_relate sr where sr.list_id
+        =#{listId,jdbcType=BIGINT})
     </select>
 </mapper>

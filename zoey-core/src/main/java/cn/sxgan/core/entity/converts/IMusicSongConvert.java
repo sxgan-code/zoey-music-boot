@@ -4,6 +4,8 @@ package cn.sxgan.core.entity.converts;
 import cn.sxgan.core.entity.MusicSong;
 import cn.sxgan.core.entity.vo.MusicSongVO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -20,6 +22,9 @@ public interface IMusicSongConvert {
     
     MusicSong convert(MusicSongVO vo);
     
+    @Mappings({
+            @Mapping(source = "songId", target = "songId"),
+    })
     MusicSongVO convert(MusicSong entity);
     
     List<MusicSongVO> convertList(List<MusicSong> list);
