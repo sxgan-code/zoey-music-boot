@@ -34,7 +34,7 @@ public class MusicSongVO implements Serializable {
     private String songPic;
     
     @Schema(description = "是否喜欢：0-不喜欢，1-喜欢")
-    private String isLike;
+    private Integer isLike;
     
     @Schema(description = "歌词文件地址")
     private String lyricUrl;

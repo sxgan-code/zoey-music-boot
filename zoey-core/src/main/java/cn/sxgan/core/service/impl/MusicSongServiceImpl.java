@@ -2,10 +2,13 @@ package cn.sxgan.core.service.impl;
 
 import cn.sxgan.common.response.ResponseResult;
 import cn.sxgan.core.entity.MusicSong;
+import cn.sxgan.core.entity.MusicSongYelp;
+import cn.sxgan.core.entity.UserSessionInfo;
 import cn.sxgan.core.entity.converts.IMusicSongConvert;
 import cn.sxgan.core.entity.query.MusicListQuery;
 import cn.sxgan.core.entity.vo.MusicListVO;
 import cn.sxgan.core.entity.vo.MusicSongVO;
+import cn.sxgan.core.http.RequestHolder;
 import cn.sxgan.core.mapper.IMusicListSongRelateMapper;
 import cn.sxgan.core.mapper.IMusicSongMapper;
 import cn.sxgan.core.service.IMusicSongService;
@@ -32,6 +35,9 @@ public class MusicSongServiceImpl implements IMusicSongService {
     @Resource
     IMusicSongMapper musicSongMapper;
     
+    @Resource
+    MusicSongYelpServiceImpl musicSongYelpService;
+    
     @Override
     public ResponseResult<List<MusicSongVO>> getSongs(MusicListVO musicListVO) {
         Long listId = musicListVO.getListId();
@@ -42,6 +48,18 @@ public class MusicSongServiceImpl implements IMusicSongService {
         musicSongs = musicSongMapper.selectSongBySongListId(musicListQuery);
         // 转换为VO
         List<MusicSongVO> musicSongVOS = IMusicSongConvert.INSTANCE.convertList(musicSongs);
+        
+        // 查询当前歌单用户喜欢状态
+        musicSongVOS.forEach(item -> item.setIsLike(0));
+        UserSessionInfo currentUser = RequestHolder.getCurrentUser();
+        List<MusicSongYelp> songYelps = musicSongYelpService.getSongYelpByUserId(currentUser);
+        songYelps.forEach(item -> {
+            musicSongVOS.forEach(musicSongVO -> {
+                if (musicSongVO.getSongId().equals(item.getSongId())) {
+                    musicSongVO.setIsLike(item.getIsLike());
+                }
+            });
+        });
         return ResponseResult.success(musicSongVOS, musicSongVOS.size());
     }
 }
