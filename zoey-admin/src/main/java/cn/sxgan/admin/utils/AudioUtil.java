@@ -44,6 +44,7 @@ public class AudioUtil {
                 e.printStackTrace();
             }
         }
+        log.info("歌曲信息构建完成,歌曲截止id为：{}", SONG_ID - 1);
     }
     
     /**
@@ -78,6 +79,9 @@ public class AudioUtil {
             filedir = filedir.substring(filedir.indexOf("resources")).replaceAll("\\\\", "/");
             
             if (!CommonUtils.checkIsNullOrEmpty(songName) && !CommonUtils.checkIsNullOrEmpty(singerName) && !CommonUtils.checkIsNullOrEmpty(albumName)) {
+                songName = songName.replaceAll("'", "´");
+                singerName = singerName.replaceAll("'", "´");
+                albumName = albumName.replaceAll("'", "´");
                 // 保存专辑图片
                 String relativePath = FileUtils.writeAImage(mp3Image, dirurl, "/resources/image/songImg/" + songName + ".png", true);
                 // 构建album数据SQL
@@ -107,6 +111,8 @@ public class AudioUtil {
      * @return
      */
     private static Long buildSingerSql(String singerName, String dirurl, String path) {
+        singerName = singerName.replaceAll("'", "´");
+        
         Long singerId = SINGER_ID;
         StringBuffer sb = new StringBuffer();
         sb.append("insert into music_singer(singer_id, singer_name, singer_pic, address)" +
@@ -123,6 +129,8 @@ public class AudioUtil {
      * @return
      */
     private static Long buildAlbumSql(String albumName, String dirurl, Long singerId, String relativePath) {
+        albumName = albumName.replaceAll("'", "´");
+        relativePath = relativePath.replaceAll("'", "´");
         Long albumId = ALBUM_ID;
         StringBuffer sb = new StringBuffer();
         sb.append("insert into music_album(album_id, album_name, album_pic, release_date, singer_id)" +
@@ -139,6 +147,10 @@ public class AudioUtil {
      * @return
      */
     private static Long buildSongSql(String musicName, String dirurl, String path, Long albumId, Long singerId) {
+        musicName = musicName.replaceAll("'", "´");
+        dirurl = dirurl.replaceAll("'", "´");
+        path = path.replaceAll("'", "´");
+        
         Long songId = SONG_ID;
         StringBuffer sb = new StringBuffer();
         sb.append("insert into music_song(song_id, song_name, song_url, song_pic, lyric_url, song_style, release_date, album_id, singer_id) value(");

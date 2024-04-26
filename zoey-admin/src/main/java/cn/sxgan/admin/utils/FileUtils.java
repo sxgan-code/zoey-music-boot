@@ -6,14 +6,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 文件公共操作类
@@ -184,5 +188,32 @@ public class FileUtils {
             e.printStackTrace();
         }
         return relativePath;
+    }
+    
+    /**
+     * 加载指定路径的文件，按行输出List数组
+     *
+     * @param path 文件路径
+     * @return List<String>
+     */
+    public static List<String> loadFileToList(String path) {
+        List<String> result = new ArrayList<String>();
+        File file = new File(path);
+        FileReader fr = null;
+        try {
+            fr = new FileReader(file);
+            // 创建流对象
+            BufferedReader br = new BufferedReader(fr);
+            // 定义字符串,保存读取的一行文字
+            String line = null;
+            // 循环读取,读取到最后返回null
+            while ((line = br.readLine()) != null) {
+                result.add(line);
+                System.out.print(line);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
     }
 }

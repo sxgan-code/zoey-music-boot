@@ -8,7 +8,7 @@ import cn.sxgan.common.constant.ExceptionStatus;
 import cn.sxgan.common.constant.RedisConst;
 import cn.sxgan.common.exception.auth.AuthorityException;
 import cn.sxgan.common.response.ResponseResult;
-import cn.sxgan.common.utils.Md5Util;
+import cn.sxgan.common.utils.PasswordEncoder;
 import cn.sxgan.core.entity.SysUser;
 import cn.sxgan.core.entity.UserSessionInfo;
 import cn.sxgan.core.entity.query.SysUserQuery;
@@ -55,7 +55,7 @@ public class AuthServiceImpl implements IAuthService {
         if (userList.size() > 0) {
             SysUser user = userList.get(0);
             // 判断密码是否正确,加密密码与库中（user对象）的password比对是否相同
-            if (Md5Util.getMD5String(userSessionInfo.getPassword()).equals(user.getPassword())) {
+            if (PasswordEncoder.matches(user.getPassword(), userSessionInfo.getPassword())) {
                 // 允许登陆，生成令牌
                 // 写入用户信息
                 HashMap<String, Object> tokenMap = new HashMap<>();
@@ -123,8 +123,12 @@ public class AuthServiceImpl implements IAuthService {
         user.setUserName(RandomUtil.randomString(12).toUpperCase(Locale.ROOT));
         user.setEmail(email);
         // 加密
-        String md5PasswordString = Md5Util.getMD5String(password);
-        user.setPassword(md5PasswordString);
+        
+        // 生成盐
+        String salt = RandomUtil.randomString(20);
+        String slatPass = PasswordEncoder.encode(userSessionInfo.getPassword(), salt);
+        user.setSalt(salt);
+        user.setPassword(slatPass);
         int insert = userMapper.insert(user);
         if (insert == 0) {
             throw new AuthorityException(

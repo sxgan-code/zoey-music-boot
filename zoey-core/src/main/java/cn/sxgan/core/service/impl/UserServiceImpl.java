@@ -52,7 +52,12 @@ public class UserServiceImpl implements IUserService {
             return null;
         }
         SysUser sysUser = SysUserConvert.INSTANCE.sysUserVOToDAO(sysUserVO);
-        int bool = userMapper.update(sysUser, new UpdateWrapper<SysUser>().set("email", sysUser.getEmail()));
+        
+        int bool = userMapper.update(sysUser,
+                new UpdateWrapper<SysUser>()
+                        .eq("email", sysUser.getEmail())
+                        .set("user_name", sysUser.getUserName())
+                        .set("personal_sign", sysUser.getPersonalSign()));
         return bool > 0 ? "用户更新完成" : null;
     }
 }

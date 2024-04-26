@@ -44,11 +44,6 @@ public class AuthController implements IAuthControllerApi {
     
     @PostMapping("/signin")
     public ResponseResult<Map<String, String>> signin(@RequestBody @Validated UserSessionInfo userSessionInfo) {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         return authService.userAuthByEmail(userSessionInfo);
     }
     
