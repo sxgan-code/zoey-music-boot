@@ -57,6 +57,12 @@ public class MusicList {
     private String listPic;
     
     /**
+     * 歌单播放次数
+     */
+    @Schema(description = "歌单播放次数", type = "Long")
+    private Long playCount;
+    
+    /**
      * 所属用户
      */
     @Schema(description = "所属用户", type = "Long")

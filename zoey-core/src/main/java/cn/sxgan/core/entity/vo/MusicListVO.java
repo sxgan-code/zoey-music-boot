@@ -38,6 +38,9 @@ public class MusicListVO implements Serializable {
     @Schema(description = "歌单图片地址")
     private String listPic;
     
+    @Schema(description = "歌单播放次数")
+    private Long playCount;
+    
     @Schema(description = "所属用户")
     private Long userId;
     

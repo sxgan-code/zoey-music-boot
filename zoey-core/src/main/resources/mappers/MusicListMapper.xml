@@ -9,6 +9,7 @@
         <result property="listInfo" column="list_info"/>
         <result property="listStyle" column="list_style"/>
         <result property="listPic" column="list_pic"/>
+        <result property="playCount" column="play_count"/>
         <result property="userId" column="user_id"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
@@ -21,6 +22,7 @@
             list_info,
             list_style,
             list_pic,
+            play_count,
             user_id,
             create_time,
             update_time
@@ -44,6 +46,9 @@
             </if>
             <if test="listPic != null">
                 and list_pic = #{listPic,jdbcType=VARCHAR}
+            </if>
+            <if test="playCount != null">
+                and play_count = #{playCount,jdbcType=BIGINT}
             </if>
             <if test="userId != null">
                 and user_id = #{userId,jdbcType=BIGINT}
@@ -74,5 +79,12 @@
         <include refid="BaseColumnList"/>
         from music_list
         <include refid="ConditionSql"/>
+    </select>
+
+    <select id="selectMusicListByPlayCount" resultType="cn.sxgan.core.entity.MusicList" resultMap="BaseResultMap"
+            parameterType="cn.sxgan.core.entity.query.MusicListQuery">
+        select
+        <include refid="BaseColumnList"/>
+        from music_list order by play_count desc limit 7
     </select>
 </mapper>

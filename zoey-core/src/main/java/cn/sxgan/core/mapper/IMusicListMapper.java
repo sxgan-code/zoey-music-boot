@@ -16,4 +16,8 @@ import java.util.List;
 @Mapper
 public interface IMusicListMapper extends BaseMapper<MusicList> {
     List<MusicList> selectMusicListByCondition(MusicListQuery query);
+    
+    List<MusicList> selectMusicListByPlayCount();
+    
+    
 }
