@@ -19,5 +19,5 @@ public interface IMusicListMapper extends BaseMapper<MusicList> {
     
     List<MusicList> selectMusicListByPlayCount();
     
-    
+    List<MusicList> getRecommendPrivateMusicList();
 }

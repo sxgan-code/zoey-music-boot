@@ -32,8 +32,9 @@ public class RecommendController implements IRecommendControllerApi {
     }
     
     @Override
+    @GetMapping(value = "/private/list")
     public ResponseResult<List<MusicListVO>> getRecommendPrivateMusicList() {
-        return null;
+        return iMusicListService.getRecommendPrivateMusicList();
     }
     
     

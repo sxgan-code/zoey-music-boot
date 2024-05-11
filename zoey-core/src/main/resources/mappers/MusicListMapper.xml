@@ -85,6 +85,13 @@
             parameterType="cn.sxgan.core.entity.query.MusicListQuery">
         select
         <include refid="BaseColumnList"/>
-        from music_list order by play_count desc limit 7
+        from music_list order by play_count desc limit 6
+    </select>
+
+    <select id="getRecommendPrivateMusicList" resultType="cn.sxgan.core.entity.MusicList" resultMap="BaseResultMap"
+            parameterType="cn.sxgan.core.entity.query.MusicListQuery">
+        select
+        <include refid="BaseColumnList"/>
+        from music_list order by play_count desc limit 6, 12
     </select>
 </mapper>

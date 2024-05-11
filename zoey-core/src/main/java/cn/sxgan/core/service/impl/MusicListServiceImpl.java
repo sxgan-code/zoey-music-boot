@@ -47,4 +47,10 @@ public class MusicListServiceImpl implements IMusicListService {
         recommendVO.setMusicListVOS(musicListVOS);
         return ResponseResult.success(recommendVO);
     }
+    
+    @Override
+    public ResponseResult<List<MusicListVO>> getRecommendPrivateMusicList() {
+        List<MusicList> musicLists = iMusicListMapper.getRecommendPrivateMusicList();
+        return ResponseResult.success(IMusicListConvert.INSTANCE.convertList(musicLists));
+    }
 }
