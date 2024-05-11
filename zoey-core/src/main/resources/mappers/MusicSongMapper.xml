@@ -120,4 +120,12 @@
         where song.song_id in (select sr.song_id from music_list_song_relate sr where sr.list_id
         =#{listId,jdbcType=BIGINT})
     </select>
+
+    <select id="randomSelectSong" resultType="cn.sxgan.core.entity.MusicSong" resultMap="BaseResultMap">
+        select *
+        from music_song song
+        left join music_singer singer on song.singer_id = singer.singer_id
+        left join music_album album on song.album_id = album.album_id
+        order by rand() limit 1
+    </select>
 </mapper>

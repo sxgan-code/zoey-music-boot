@@ -2,10 +2,14 @@ package cn.sxgan.core.service.impl;
 
 import cn.sxgan.common.response.ResponseResult;
 import cn.sxgan.core.entity.MusicList;
+import cn.sxgan.core.entity.MusicSong;
 import cn.sxgan.core.entity.converts.IMusicListConvert;
+import cn.sxgan.core.entity.converts.IMusicSongConvert;
 import cn.sxgan.core.entity.vo.MusicListVO;
+import cn.sxgan.core.entity.vo.MusicSongVO;
 import cn.sxgan.core.entity.vo.RecommendVO;
 import cn.sxgan.core.mapper.IMusicListMapper;
+import cn.sxgan.core.mapper.IMusicSongMapper;
 import cn.sxgan.core.service.IMusicListService;
 import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
@@ -26,11 +30,20 @@ public class MusicListServiceImpl implements IMusicListService {
     @Resource
     IMusicListMapper iMusicListMapper;
     
+    @Resource
+    IMusicSongMapper iMusicSongMapper;
+    
     @Override
     public ResponseResult<RecommendVO> getTodayRecommend() {
+        RecommendVO recommendVO = new RecommendVO();
+        // 获取猜你喜欢歌曲，
+        MusicSong musicSong = iMusicSongMapper.randomSelectSong();
+        MusicSongVO musicSongVO = IMusicSongConvert.INSTANCE.convert(musicSong);
+        recommendVO.setMusicSongVO(musicSongVO);
+        // 获取今日推荐歌单
         List<MusicList> musicLists = iMusicListMapper.selectMusicListByPlayCount();
         List<MusicListVO> musicListVOS = IMusicListConvert.INSTANCE.convertList(musicLists);
-        RecommendVO recommendVO = new RecommendVO();
+        
         recommendVO.setMusicListVOS(musicListVOS);
         return ResponseResult.success(recommendVO);
     }

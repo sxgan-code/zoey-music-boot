@@ -19,4 +19,6 @@ public interface IMusicSongMapper extends BaseMapper<MusicSong> {
     List<MusicSong> selectMusicSongByCondition(MusicSongQuery query);
     
     List<MusicSong> selectSongBySongListId(MusicListQuery query);
+    
+    MusicSong randomSelectSong();
 }
