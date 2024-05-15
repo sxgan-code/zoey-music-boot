@@ -21,6 +21,24 @@ public class FileConst {
     // 返回参数CODE 500 请求错误
     public static final String CODE500 = "500";
     
+    // 返回flac歌曲资源保存相对地址
+    public static final String FLAC_SONG_PATH = "/resources/songs/flac/songs/";
+    public static final String FLAC_IMG_PATH = "/resources/songs/flac/images/";
+    public static final String FLAC_LRC_PATH = "/resources/songs/flac/lyrics/";
+    
+    // 返回mp3歌曲保存相对地址
+    public static final String MP3_SONG_PATH = "/resources/songs/mp3/songs/";
+    public static final String MP3_IMG_PATH = "/resources/songs/mp3/images/";
+    public static final String MP3_LRC_PATH = "/resources/songs/mp3/lyrics/";
+    
+    // 返回ogg歌曲保存相对地址
+    public static final String OGG_SONG_PATH = "/resources/songs/ogg/songs/";
+    public static final String OGG_IMG_PATH = "/resources/songs/ogg/images/";
+    public static final String OGG_LRC_PATH = "/resources/songs/ogg/lyrics/";
+    
+    
+    
+    
     // 返回歌曲图片相对地址
     public static final String SONG_IMAGE_PATH = "/resources/image/songImg/";
     

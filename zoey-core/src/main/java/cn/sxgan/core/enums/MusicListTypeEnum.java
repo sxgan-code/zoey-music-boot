@@ -21,7 +21,11 @@ public enum MusicListTypeEnum {
     @Schema(description = "创建")
     CREATE(1),
     @Schema(description = "收藏")
-    COLLECT(2);
+    COLLECT(2),
+    @Schema(description = "我喜欢")
+    LOVE(3),
+    @Schema(description = "最近播放")
+    PLAYED(4);
     
     public static final List<MusicListTypeEnum> MUSIC_LIST_TYPE_ALL = List.of(CREATE, COLLECT);
     

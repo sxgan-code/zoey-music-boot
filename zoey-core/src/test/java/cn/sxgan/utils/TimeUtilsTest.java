@@ -2,6 +2,8 @@ package cn.sxgan.utils;
 
 import cn.sxgan.common.utils.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @Description: 时间测试类
@@ -10,10 +12,16 @@ import lombok.extern.slf4j.Slf4j;
  * @Version: 1.0
  **/
 @Slf4j
+@SpringBootTest(classes = {TimeUtilsTest.class})
 public class TimeUtilsTest {
-
+    
     public static void main(String[] args) {
         Integer secondsToMidnight = TimeUtils.getSecondsToMidnight();
         log.info(secondsToMidnight.toString());
+    }
+    
+    @Test
+    public void testGetSecondsToMidnight() {
+        log.info("user.dir={}", System.getProperty("user.dir"));
     }
 }

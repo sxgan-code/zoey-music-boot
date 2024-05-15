@@ -216,4 +216,27 @@ public class FileUtils {
         }
         return result;
     }
+    
+    /**
+     * 获取文件夹下所有文件
+     *
+     * @param dir
+     * @return
+     */
+    public static List<File> listAllFiles(File dir) {
+        List<File> fileList = new ArrayList<>();
+        File[] files = dir.listFiles();
+        
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    fileList.addAll(listAllFiles(file));
+                } else {
+                    fileList.add(file);
+                }
+            }
+        }
+        
+        return fileList;
+    }
 }
