@@ -1,6 +1,11 @@
 package cn.sxgan.admin.utils;
 
+import cn.sxgan.common.constant.FileConst;
+import cn.sxgan.common.entity.MusicAlbum;
+import cn.sxgan.common.entity.MusicSinger;
+import cn.sxgan.common.entity.MusicSong;
 import cn.sxgan.common.utils.CommonUtils;
+import cn.sxgan.common.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.mp3.MP3File;
@@ -11,12 +16,90 @@ import org.jaudiotagger.tag.id3.AbstractID3v2Tag;
 import org.jaudiotagger.tag.id3.framebody.FrameBodyAPIC;
 
 import java.io.File;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
 public class AudioUtil {
-    private static Long SONG_ID = 3000000000L;
-    private static Long SINGER_ID = 5000000000L;
-    private static Long ALBUM_ID = 80000000L;
+    public static Long SONG_ID = 3000000000L;
+    public static Long SINGER_ID = 5000000000L;
+    public static Long ALBUM_ID = 80000000L;
+    public final static Lock LOCK = new ReentrantLock();
+    
+    private static StringBuilder songStrSql = new StringBuilder();
+    private static StringBuilder singerStrSql = new StringBuilder();
+    private static StringBuilder albumStrSql = new StringBuilder();
+    
+    static {
+        String songParent = new File(FileConst.SONG_SQL_PATH).getParent();
+        new File(songParent).mkdirs();
+        String singerParent = new File(FileConst.SINGER_SQL_PATH).getParent();
+        new File(songParent).mkdirs();
+        String albumParent = new File(FileConst.ALBUM_SQL_PATH).getParent();
+        new File(albumParent).mkdirs();
+        songStrSql.append("insert into music_song(song_id, song_name, song_url, song_pic, lyric_url, song_style, release_date, album_id, singer_id) values \n");
+        FileUtils.writeADocument(songStrSql.toString(), FileConst.SONG_SQL_PATH, true);
+        singerStrSql.append("insert into music_singer(singer_id, singer_name, singer_pic, address) values \n");
+        FileUtils.writeADocument(singerStrSql.toString(), FileConst.SINGER_SQL_PATH, true);
+        albumStrSql.append("insert into music_album(album_id, album_name, album_pic, release_date, singer_id)" + " values \n");
+        FileUtils.writeADocument(albumStrSql.toString(), FileConst.ALBUM_SQL_PATH, true);
+    }
+    
+    /**
+     * 构建Song表SQL数据
+     *
+     * @param musicSong 歌曲信息实体
+     */
+    public static void buildSongSql(MusicSong musicSong) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("(")
+                .append(musicSong.getSongId())
+                .append(",'").append(musicSong.getSongName())
+                .append("','").append(musicSong.getSongUrl())
+                .append("','").append(musicSong.getSongPic())
+                .append("','")
+                .append("','#流行，#怀旧")
+                .append("','").append(DateUtils.parseDateToStr(musicSong.getReleaseDate(),
+                        DateUtils.DatePatternEnum.YYYY_MM_DD.getPattern()))
+                .append("',").append(musicSong.getAlbumId())
+                .append(",").append(musicSong.getSingerId())
+                .append("),\n");
+        FileUtils.writeADocument(sb.toString(), FileConst.SONG_SQL_PATH, true);
+    }
+    
+    /**
+     * 构建singer数据SQL
+     *
+     * @param musicSinger 歌手信息
+     */
+    
+    public static void buildSingerSql(MusicSinger musicSinger) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("(")
+                .append(musicSinger.getSingerId())
+                .append(",'").append(musicSinger.getSingerName())
+                .append("','").append(musicSinger.getSingerPic())
+                .append("','").append("中国上海'),\n");
+        FileUtils.writeADocument(sb.toString(), FileConst.SINGER_SQL_PATH, true);
+    }
+    
+    /**
+     * 构建album数据SQL
+     *
+     * @param musicAlbum 专辑详情
+     */
+    public static void buildAlbumSql(MusicAlbum musicAlbum) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("(").append(musicAlbum.getAlbumId())
+                .append(",'").append(musicAlbum.getAlbumName())
+                .append("','").append(musicAlbum.getAlbumPic())
+                .append("','").append(DateUtils.parseDateToStr(musicAlbum.getReleaseDate(),
+                        DateUtils.DatePatternEnum.YYYY_MM_DD.getPattern()))
+                .append("',").append(musicAlbum.getSingerId())
+                .append("),\n");
+        FileUtils.writeADocument(sb.toString(), FileConst.ALBUM_SQL_PATH, true);
+    }
+    
     
     public static void main(String[] args) {
         String dirurl = System.getProperty("user.dir");
@@ -85,12 +168,12 @@ public class AudioUtil {
                 // 保存专辑图片
                 String relativePath = FileUtils.writeAImage(mp3Image, dirurl, "/resources/image/songImg/" + songName + ".png", true);
                 // 构建album数据SQL
-                Long albumId = buildAlbumSql(albumName, dirurl, SINGER_ID, relativePath);
+                // Long albumId = buildAlbumSql(albumName, dirurl, SINGER_ID, relativePath);
                 
                 // 构建singer数据SQL
-                Long singerId = buildSingerSql(singerName, dirurl, path);
+                // Long singerId = buildSingerSql(singerName, dirurl, path);
                 // 构建song数据SQL
-                Long songId = buildSongSql(songName, dirurl, path, albumId, singerId);
+                // Long songId = buildSongSql(songName, dirurl, path, albumId, singerId);
                 
                 SINGER_ID++;
                 SONG_ID++;
@@ -103,70 +186,6 @@ public class AudioUtil {
         }
     }
     
-    /**
-     * 构建singer数据SQL
-     *
-     * @param singerName
-     * @param path
-     * @return
-     */
-    private static Long buildSingerSql(String singerName, String dirurl, String path) {
-        singerName = singerName.replaceAll("'", "´");
-        
-        Long singerId = SINGER_ID;
-        StringBuffer sb = new StringBuffer();
-        sb.append("insert into music_singer(singer_id, singer_name, singer_pic, address)" +
-                " value (" + singerId + ",'" + singerName + "','/image/singerImg/" + singerName + ".png','中国上海');\n");
-        FileUtils.writeADocument(sb.toString(), dirurl + "/doc/music_singer_data.sql", true);
-        return singerId;
-    }
-    
-    /**
-     * 构建album数据SQL
-     *
-     * @param albumName
-     * @param singerId
-     * @return
-     */
-    private static Long buildAlbumSql(String albumName, String dirurl, Long singerId, String relativePath) {
-        albumName = albumName.replaceAll("'", "´");
-        relativePath = relativePath.replaceAll("'", "´");
-        Long albumId = ALBUM_ID;
-        StringBuffer sb = new StringBuffer();
-        sb.append("insert into music_album(album_id, album_name, album_pic, release_date, singer_id)" +
-                " value (" + albumId + ",'" + albumName + "','" + relativePath.substring(10) + "','" + CommonUtils.getDateString() + "'," + singerId + ");\n");
-        FileUtils.writeADocument(sb.toString(), dirurl + "/doc/music_album_data.sql", true);
-        return ALBUM_ID;
-    }
-    
-    /**
-     * 构建SongList表SQL数据
-     *
-     * @param musicName
-     * @param path
-     * @return
-     */
-    private static Long buildSongSql(String musicName, String dirurl, String path, Long albumId, Long singerId) {
-        musicName = musicName.replaceAll("'", "´");
-        dirurl = dirurl.replaceAll("'", "´");
-        path = path.replaceAll("'", "´");
-        
-        Long songId = SONG_ID;
-        StringBuffer sb = new StringBuffer();
-        sb.append("insert into music_song(song_id, song_name, song_url, song_pic, lyric_url, song_style, release_date, album_id, singer_id) value(");
-        sb.append(songId);
-        sb.append(",'" + musicName);
-        sb.append("','" + path.substring(9));
-        sb.append("','/image/songImg/" + musicName + ".png");
-        sb.append("','");
-        sb.append("','#流行，#怀旧");
-        sb.append("','" + CommonUtils.getDateString());
-        sb.append("'," + albumId + "," + singerId + ");\n");
-        String data = sb.toString();
-        log.info(data);
-        FileUtils.writeADocument(data, dirurl + "/doc/music_song_data.sql", true);
-        return songId;
-    }
     
     /**
      * 获取MP3封面图片

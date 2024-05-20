@@ -1,6 +1,6 @@
 package cn.sxgan.core.mapper;
 
-import cn.sxgan.core.entity.MusicSong;
+import cn.sxgan.common.entity.MusicSong;
 import cn.sxgan.core.entity.query.MusicListQuery;
 import cn.sxgan.core.entity.query.MusicSongQuery;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

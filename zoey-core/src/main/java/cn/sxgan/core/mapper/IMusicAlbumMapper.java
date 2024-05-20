@@ -1,6 +1,6 @@
 package cn.sxgan.core.mapper;
 
-import cn.sxgan.core.entity.MusicAlbum;
+import cn.sxgan.common.entity.MusicAlbum;
 import cn.sxgan.core.entity.query.MusicAlbumQuery;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;

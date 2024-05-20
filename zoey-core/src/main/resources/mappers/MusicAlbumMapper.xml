@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.sxgan.core.mapper.IMusicAlbumMapper">
-    <resultMap id="BaseResultMap" type="cn.sxgan.core.entity.MusicAlbum">
+    <resultMap id="BaseResultMap" type="cn.sxgan.common.entity.MusicAlbum">
         <result property="albumId" column="album_id"/>
         <result property="albumName" column="album_name"/>
         <result property="albumPic" column="album_pic"/>
@@ -63,7 +63,7 @@
             </if>
         </where>
     </sql>
-    <select id="selectMusicAlbumByCondition" resultType="cn.sxgan.core.entity.MusicAlbum" resultMap="BaseResultMap"
+    <select id="selectMusicAlbumByCondition" resultType="cn.sxgan.common.entity.MusicAlbum" resultMap="BaseResultMap"
             parameterType="cn.sxgan.core.entity.query.MusicAlbumQuery">
         select
         <include refid="BaseColumnList"/>

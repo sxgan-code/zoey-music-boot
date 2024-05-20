@@ -35,7 +35,7 @@ public class MusicList {
     /**
      * 歌单类型: 1：创建，2：收藏，3创建及收藏
      */
-    @Schema(description = "歌单类型: 1：创建，2：收藏，3创建及收藏", type = "Integer")
+    @Schema(description = "歌单类型: 1：创建，2：收藏，3：喜欢，4：最近播放", type = "Integer")
     private Integer listType;
     
     /**
@@ -55,6 +55,10 @@ public class MusicList {
      */
     @Schema(description = "歌单图片地址", type = "String")
     private String listPic;
+    
+    public void setListPic(String listPic) {
+        this.listPic = listPic + "?time=" + System.currentTimeMillis();
+    }
     
     /**
      * 歌单播放次数

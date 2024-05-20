@@ -39,6 +39,7 @@ public class FlacUtil {
             AudioFile audioFile = flacFileReader.read(flacFile);
             
             if (audioFile != null) {
+                FileUtils.copyFileToDir(flacFile, FileConst.PROJECT_URL + FileConst.FLAC_SONG_PATH);
                 FlacTag tag = (FlacTag) audioFile.getTag();
                 TagField title1 = tag.getFields("TITLE").getFirst();
                 String string = title1.toString();

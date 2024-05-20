@@ -2,6 +2,7 @@ package cn.sxgan.admin.utils;
 
 import cn.hutool.core.util.StrUtil;
 import cn.sxgan.common.constant.FileConst;
+import cn.sxgan.common.utils.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedInputStream;
@@ -15,6 +16,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -238,5 +241,24 @@ public class FileUtils {
         }
         
         return fileList;
+    }
+    
+    
+    /**
+     * 复制文件到指定文件夹下
+     *
+     * @param sourceFile
+     * @param targetDir
+     */
+    public static File copyFileToDir(File sourceFile, String targetDir) throws IOException {
+        String[] split = sourceFile.getName().split("\\.");
+        String fileName = sourceFile.getName();
+        if (split.length == 2) {
+            String name = StringUtils.trim(split[0], '-').trim();
+            fileName = name + "." + split[1];
+        }
+        File file = new File(targetDir + File.separator + fileName);
+        Files.copy(sourceFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        return file;
     }
 }

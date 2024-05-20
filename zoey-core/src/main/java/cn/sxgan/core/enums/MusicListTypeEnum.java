@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.util.List;
 
 /**
- * @Description: 歌单类型枚举，歌单类型: 1：创建，2：收藏，3创建及收藏
+ * @Description: 歌单类型枚举，歌单类型: 1：创建，2：收藏，3：喜欢，4：最近播放
  * @Author: sxgan
  * @Date: 2024-04-17 23:16
  * @Version: 1.0

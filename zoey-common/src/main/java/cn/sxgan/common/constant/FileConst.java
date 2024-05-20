@@ -22,32 +22,36 @@ public class FileConst {
     public static final String CODE500 = "500";
     
     // 返回flac歌曲资源保存相对地址
-    public static final String FLAC_SONG_PATH = "/resources/songs/flac/songs/";
-    public static final String FLAC_IMG_PATH = "/resources/songs/flac/images/";
-    public static final String FLAC_LRC_PATH = "/resources/songs/flac/lyrics/";
+    public static final String FLAC_SONG_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/flac/songs/";
+    public static final String FLAC_IMG_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/flac/images/";
+    public static final String FLAC_LRC_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/flac/lyrics/";
     
     // 返回mp3歌曲保存相对地址
-    public static final String MP3_SONG_PATH = "/resources/songs/mp3/songs/";
-    public static final String MP3_IMG_PATH = "/resources/songs/mp3/images/";
-    public static final String MP3_LRC_PATH = "/resources/songs/mp3/lyrics/";
+    public static final String MP3_SONG_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/mp3/songs/";
+    public static final String MP3_IMG_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/mp3/images/";
+    public static final String MP3_LRC_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/mp3/lyrics/";
     
     // 返回ogg歌曲保存相对地址
-    public static final String OGG_SONG_PATH = "/resources/songs/ogg/songs/";
-    public static final String OGG_IMG_PATH = "/resources/songs/ogg/images/";
-    public static final String OGG_LRC_PATH = "/resources/songs/ogg/lyrics/";
+    public static final String OGG_SONG_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/ogg/songs/";
+    public static final String OGG_IMG_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/ogg/images/";
+    public static final String OGG_LRC_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/data/ogg/lyrics/";
     
-    
-    
-    
-    // 返回歌曲图片相对地址
-    public static final String SONG_IMAGE_PATH = "/resources/image/songImg/";
-    
-    // 返回歌曲相对地址
-    public static final String SONG_PATH = "/resources/song/";
-    
-    // 返回歌手头像相对地址
-    public static final String SINGER_IMAGE_PATH = "/resources/image/singerImg/";
-    
+    // sql脚本保存地址
+    public static final String SONG_SQL_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/sql/music_song_data.sql";
+    public static final String SINGER_SQL_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/sql/music_singer_data.sql";
+    public static final String ALBUM_SQL_PATH = PROJECT_URL.replaceAll("zoey-admin", "") +
+            "/resources/sql/music_album_data.sql";
     // 返回走马灯图片相对地址
     public static final String CAROUSEL_IMAGE_PATH = "/resources/ClientImg/mainpage/";
     

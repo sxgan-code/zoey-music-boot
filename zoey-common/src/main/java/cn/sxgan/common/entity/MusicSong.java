@@ -1,4 +1,4 @@
-package cn.sxgan.core.entity;
+package cn.sxgan.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -45,6 +45,10 @@ public class MusicSong {
     @Schema(description = "歌曲图片地址", type = "String")
     private String songPic;
     
+    public String getSongPic() {
+        return songPic + "?time=" + System.currentTimeMillis();
+    }
+    
     /**
      * 歌词文件地址
      */
@@ -66,14 +70,14 @@ public class MusicSong {
     /**
      * 所属专辑
      */
-    @Schema(description = "所属专辑", type = "String")
-    private String albumId;
+    @Schema(description = "所属专辑", type = "Long")
+    private Long albumId;
     
     /**
      * 歌手id
      */
-    @Schema(description = "歌手id", type = "String")
-    private String singerId;
+    @Schema(description = "歌手id", type = "Long")
+    private Long singerId;
     
     /**
      * 删除标志：0-未删除，1-已删除

@@ -1,6 +1,6 @@
 package cn.sxgan.core.entity.query;
 
-import cn.sxgan.core.entity.MusicAlbum;
+import cn.sxgan.common.entity.MusicAlbum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

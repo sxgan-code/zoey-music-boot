@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.sxgan.core.mapper.IMusicSongMapper">
-    <resultMap id="BaseResultMap" type="cn.sxgan.core.entity.MusicSong">
+    <resultMap id="BaseResultMap" type="cn.sxgan.common.entity.MusicSong">
         <result property="songId" column="song_id"/>
         <result property="songName" column="song_name"/>
         <result property="songUrl" column="song_url"/>
@@ -15,7 +15,7 @@
         <result property="delFlag" column="del_flag"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
-        <association property="musicSinger" javaType="cn.sxgan.core.entity.MusicSinger">
+        <association property="musicSinger" javaType="cn.sxgan.common.entity.MusicSinger">
             <result property="singerId" column="singer_id"/>
             <result property="singerName" column="singer_name"/>
             <result property="singerPic" column="singer_pic"/>
@@ -24,7 +24,7 @@
             <result property="createTime" column="create_time"/>
             <result property="updateTime" column="update_time"/>
         </association>
-        <association property="musicAlbum" javaType="cn.sxgan.core.entity.MusicAlbum">
+        <association property="musicAlbum" javaType="cn.sxgan.common.entity.MusicAlbum">
             <result property="albumId" column="album_id"/>
             <result property="albumName" column="album_name"/>
             <result property="albumPic" column="album_pic"/>
@@ -102,7 +102,7 @@
             </if>
         </where>
     </sql>
-    <select id="selectMusicSongByCondition" resultType="cn.sxgan.core.entity.MusicSong" resultMap="BaseResultMap"
+    <select id="selectMusicSongByCondition" resultType="cn.sxgan.common.entity.MusicSong" resultMap="BaseResultMap"
             parameterType="cn.sxgan.core.entity.query.MusicSongQuery">
         select
         <include refid="BaseColumnList"/>
@@ -110,7 +110,7 @@
         <include refid="ConditionSql"/>
     </select>
 
-    <select id="selectSongBySongListId" resultType="cn.sxgan.core.entity.MusicSong" resultMap="BaseResultMap"
+    <select id="selectSongBySongListId" resultType="cn.sxgan.common.entity.MusicSong" resultMap="BaseResultMap"
             parameterType="cn.sxgan.core.entity.query.MusicListQuery">
         <!--@mbg.generated-->
         select *
@@ -121,7 +121,7 @@
         =#{listId,jdbcType=BIGINT})
     </select>
 
-    <select id="randomSelectSong" resultType="cn.sxgan.core.entity.MusicSong" resultMap="BaseResultMap">
+    <select id="randomSelectSong" resultType="cn.sxgan.common.entity.MusicSong" resultMap="BaseResultMap">
         select *
         from music_song song
         left join music_singer singer on song.singer_id = singer.singer_id

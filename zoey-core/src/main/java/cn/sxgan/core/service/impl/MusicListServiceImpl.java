@@ -1,8 +1,8 @@
 package cn.sxgan.core.service.impl;
 
+import cn.sxgan.common.entity.MusicSong;
 import cn.sxgan.common.response.ResponseResult;
 import cn.sxgan.core.entity.MusicList;
-import cn.sxgan.core.entity.MusicSong;
 import cn.sxgan.core.entity.converts.IMusicListConvert;
 import cn.sxgan.core.entity.converts.IMusicSongConvert;
 import cn.sxgan.core.entity.vo.MusicListVO;

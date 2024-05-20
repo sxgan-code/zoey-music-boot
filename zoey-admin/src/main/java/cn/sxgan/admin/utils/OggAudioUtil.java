@@ -1,6 +1,7 @@
 package cn.sxgan.admin.utils;
 
 import cn.sxgan.common.utils.CommonUtils;
+import cn.sxgan.common.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.mp3.MP3File;
@@ -111,7 +112,7 @@ public class OggAudioUtil {
         StringBuffer sb = new StringBuffer();
         sb.append("delete from album where album_id = '" + albumId + "';\n");
         sb.append("insert into album (album_id, album_name, album_pic, release_date)\n" +
-                "values ('" + albumId + "','" + albumName + "','" + relativePath + "','" + CommonUtils.getDateString() + "');");
+                "values ('" + albumId + "','" + albumName + "','" + relativePath + "','" + DateUtils.getDateStr() + "');");
         FileUtils.writeADocument(sb.toString(), dirurl + "/DB/albumSql.sql", true);
         return albumId;
     }
@@ -132,7 +133,7 @@ public class OggAudioUtil {
         sb.append("','" + musicName);
         sb.append("','/" + path);
         sb.append("','/resources/image/songImg/" + musicName + ".png");
-        sb.append("','','#流行，#怀旧','" + CommonUtils.getDateString());
+        sb.append("','','#流行，#怀旧','" + DateUtils.getDateStr());
         sb.append("','" + albumId + "','" + singerId + "');\n");
         String data = sb.toString();
         log.info(data);

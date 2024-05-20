@@ -1,7 +1,7 @@
 package cn.sxgan.core.entity.converts;
 
 
-import cn.sxgan.core.entity.MusicSinger;
+import cn.sxgan.common.entity.MusicSinger;
 import cn.sxgan.core.entity.vo.MusicSingerVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

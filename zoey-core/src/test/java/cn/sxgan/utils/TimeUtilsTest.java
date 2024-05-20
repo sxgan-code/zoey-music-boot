@@ -1,6 +1,6 @@
 package cn.sxgan.utils;
 
-import cn.sxgan.common.utils.TimeUtils;
+import cn.sxgan.common.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class TimeUtilsTest {
     
     public static void main(String[] args) {
-        Integer secondsToMidnight = TimeUtils.getSecondsToMidnight();
+        Integer secondsToMidnight = DateUtils.getSecondsToMidnight();
         log.info(secondsToMidnight.toString());
     }
     
