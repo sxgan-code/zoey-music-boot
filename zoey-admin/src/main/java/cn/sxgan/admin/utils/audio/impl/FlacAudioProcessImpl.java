@@ -1,7 +1,6 @@
 package cn.sxgan.admin.utils.audio.impl;
 
 import cn.sxgan.admin.utils.AudioUtil;
-import cn.sxgan.admin.utils.FileUtils;
 import cn.sxgan.admin.utils.audio.IAudioProcess;
 import cn.sxgan.common.constant.FileConst;
 import cn.sxgan.common.entity.MusicAlbum;
@@ -9,6 +8,7 @@ import cn.sxgan.common.entity.MusicSinger;
 import cn.sxgan.common.entity.MusicSong;
 import cn.sxgan.common.utils.CommonUtils;
 import cn.sxgan.common.utils.DateUtils;
+import cn.sxgan.common.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.exceptions.CannotReadException;

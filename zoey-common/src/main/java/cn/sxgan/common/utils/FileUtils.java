@@ -1,8 +1,7 @@
-package cn.sxgan.admin.utils;
+package cn.sxgan.common.utils;
 
 import cn.hutool.core.util.StrUtil;
 import cn.sxgan.common.constant.FileConst;
-import cn.sxgan.common.utils.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedInputStream;
@@ -23,13 +22,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 文件公共操作类
- *
- * @author GanShaoXi
- * @return cn.daniel.music.utils
- * @date 2021/11/23 17:33
- * @versions 1.0.0
- */
+ * @Description: 文件公共操作类
+ * @Author: sxgan
+ * @Date: 2024/5/21 19:42
+ * @Version: 1.0
+ **/
 public class FileUtils {
     
     // 获取根目录
@@ -260,5 +257,49 @@ public class FileUtils {
         File file = new File(targetDir + File.separator + fileName);
         Files.copy(sourceFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         return file;
+    }
+    
+    /**
+     * 文件名根据文件路径获取后缀名
+     *
+     * @param filePath 字符串路径
+     * @return 后缀名
+     */
+    public static String getFileExtension(String filePath) {
+        // 路径处理
+        filePath = filePath.replaceAll("\\\\", "/");
+        if (filePath.contains("/")) {
+            String[] split = filePath.split("/");
+            filePath = split[split.length - 1];
+        }
+        if (filePath.contains(".")) {
+            String[] split = filePath.split("\\.");
+            return split[split.length - 1];
+        }
+        return "";
+    }
+    
+    /**
+     * 文件名根据文件路径获取后缀名
+     *
+     * @param file 文件类型路径
+     * @return 后缀名
+     */
+    public static String getFileExtension(File file) {
+        String filePath = file.getAbsolutePath();
+        return getFileExtension(filePath);
+    }
+    
+    // 根据文件类型获取文件系统路径
+    
+    public static String getFilePathByType(String fileName) {
+        String fileExtension = getFileExtension(fileName);
+        switch (fileExtension) {
+            case "flac":
+                return FileConst.FLAC_SONG_PATH + fileName;
+            case "mp3":
+                return FileConst.MP3_IMG_PATH + fileName;
+        }
+        return "";
     }
 }

@@ -12,7 +12,6 @@ logging:
   level:
     root: info
     cn.sxgan.mapper: debug
-
 # 项目相关配置
 zoey:
   # 标题
@@ -35,3 +34,6 @@ zoey:
 # tokenKey
 token:
   key: zoey2024
+server:
+  tomcat:
+    connection-timeout: 30000

@@ -2,6 +2,7 @@ package cn.sxgan.admin.utils;
 
 import cn.sxgan.common.constant.SystemConst;
 import cn.sxgan.common.utils.CommonUtils;
+import cn.sxgan.common.utils.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

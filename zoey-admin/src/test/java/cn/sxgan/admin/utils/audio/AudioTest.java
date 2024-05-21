@@ -1,8 +1,8 @@
 package cn.sxgan.admin.utils.audio;
 
-import cn.sxgan.admin.utils.FileUtils;
 import cn.sxgan.admin.utils.audio.impl.FlacAudioProcessImpl;
 import cn.sxgan.common.constant.FileConst;
+import cn.sxgan.common.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
