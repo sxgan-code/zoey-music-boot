@@ -1,10 +1,13 @@
-package cn.sxgan.core.entity;
+package cn.sxgan.common.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * @Description: 用户全局会话对象
@@ -14,7 +17,11 @@ import lombok.Data;
  **/
 @Data
 @Schema(name = "UserSessionInfo", description = "用户全局会话对象")
-public class UserSessionInfo {
+public class UserSessionInfo implements Serializable {
+    
+    @Serial
+    private static final long serialVersionUID = 1L;
+    
     @Schema(description = "用户ID", type = "Integer", example = "000000")
     private Long id;
     @Schema(description = "密码", type = "String", example = "123456")

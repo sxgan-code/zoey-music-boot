@@ -1,6 +1,6 @@
 spring:
   application:
-    name: zoey-music-boot
+    name: zoey-music-admin
   profiles:
     #    active: pro
     #    include: prodb
@@ -35,3 +35,15 @@ zoey:
 # tokenKey
 token:
   key: zoey2024
+
+dubbo:
+  scan:
+    base-packages: cn.sxgan.admin.service.impl
+  registry:
+    address: zookeeper://192.168.0.200:2181
+  protocol:
+    name: dubbo
+    port: 22223
+  # 暂时关闭，以免端口冲突
+  application:
+    qos-enable: false

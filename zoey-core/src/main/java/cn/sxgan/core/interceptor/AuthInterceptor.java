@@ -1,12 +1,13 @@
 package cn.sxgan.core.interceptor;
 
+
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.sxgan.common.cache.RedisUtil;
 import cn.sxgan.common.constant.ExceptionStatus;
 import cn.sxgan.common.constant.RedisConst;
+import cn.sxgan.common.entity.UserSessionInfo;
 import cn.sxgan.common.response.ResponseResult;
-import cn.sxgan.core.entity.UserSessionInfo;
 import cn.sxgan.core.http.RequestHolder;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;

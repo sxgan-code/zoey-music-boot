@@ -1,7 +1,7 @@
 package cn.sxgan.core.http;
 
 
-import cn.sxgan.core.entity.UserSessionInfo;
+import cn.sxgan.common.entity.UserSessionInfo;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**

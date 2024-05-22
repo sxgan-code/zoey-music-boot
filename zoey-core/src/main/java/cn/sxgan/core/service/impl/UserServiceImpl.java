@@ -2,9 +2,9 @@ package cn.sxgan.core.service.impl;
 
 
 import cn.hutool.core.util.StrUtil;
+import cn.sxgan.common.entity.UserSessionInfo;
 import cn.sxgan.core.entity.SysUser;
 import cn.sxgan.core.entity.SysUserVO;
-import cn.sxgan.core.entity.UserSessionInfo;
 import cn.sxgan.core.entity.converts.SysUserConvert;
 import cn.sxgan.core.entity.query.SysUserQuery;
 import cn.sxgan.core.mapper.SysUserMapper;

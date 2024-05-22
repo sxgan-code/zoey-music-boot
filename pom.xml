@@ -34,7 +34,9 @@
         <spring.boot.version>3.2.5</spring.boot.version>
         <!--        <spring-cloud.version>2022.0.0</spring-cloud.version>-->
         <!--        <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>-->
-
+        <!-- 微服务相关 -->
+        <dubbo.version>3.3.0-beta.1</dubbo.version>
+        <zookeeper.version>3.7.0</zookeeper.version>
         <!-- DB 相关 -->
         <mysql.connector.version>8.3.0</mysql.connector.version>
         <mybatis.plus.starter.version>3.5.5</mybatis.plus.starter.version>
@@ -214,6 +216,22 @@
                 <version>${jakarta.version}</version>
             </dependency>
 
+            <!-- 微服务相关 -->
+            <!-- Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

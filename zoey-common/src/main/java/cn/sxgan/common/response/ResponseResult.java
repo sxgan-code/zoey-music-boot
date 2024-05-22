@@ -4,6 +4,7 @@ import cn.sxgan.common.constant.ResponseStatus;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -14,8 +15,9 @@ import java.io.Serializable;
  **/
 @Data
 @Builder
-public class ResponseResult<T> {
-    
+public class ResponseResult<T> implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     /**
      * response timestamp.
      */

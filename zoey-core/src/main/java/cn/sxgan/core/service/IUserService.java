@@ -1,7 +1,7 @@
 package cn.sxgan.core.service;
 
+import cn.sxgan.common.entity.UserSessionInfo;
 import cn.sxgan.core.entity.SysUserVO;
-import cn.sxgan.core.entity.UserSessionInfo;
 
 /**
  * @Description: 用户服务接口
