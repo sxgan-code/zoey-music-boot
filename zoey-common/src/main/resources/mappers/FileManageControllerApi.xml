@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.sxgan.common.mapper.IMusicListSongRelateMapper">
+    <resultMap id="BaseResultMap" type="cn.sxgan.common.entity.MusicListSongRelate">
+        <result property="listSongId" column="list_song_id"/>
+        <result property="listId" column="list_id"/>
+        <result property="songId" column="song_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="BaseColumnList">
+        list_song_id,
+            list_id,
+            song_id,
+            create_time,
+            update_time
+    </sql>
+    <sql id="ConditionSql">
+        <where>
+            <if test="listSongId != null">
+                and list_song_id = #{listSongId,jdbcType=BIGINT}
+            </if>
+            <if test="listId != null">
+                and list_id = #{listId,jdbcType=BIGINT}
+            </if>
+            <if test="songId != null">
+                and song_id = #{songId,jdbcType=BIGINT}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=DATETIME}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=DATETIME}
+            </if>
+            <if test="createStartDate != null">
+                and create_time <![CDATA[ >= ]]> #{createStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createEndDate != null">
+                and create_time <![CDATA[ <= ]]> #{createEndDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateStartDate != null">
+                and update_time <![CDATA[ >= ]]> #{updateStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateEndDate != null">
+                and update_time <![CDATA[ <= ]]> #{updateEndDate,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </sql>
+    <select id="selectMusicListSongRelateByCondition" resultType="cn.sxgan.common.entity.MusicListSongRelate"
+            resultMap="BaseResultMap"
+            parameterType="cn.sxgan.common.entity.query.MusicListSongRelateQuery">
+        select
+        <include refid="BaseColumnList"/>
+        from music_list_song_relate
+        <include refid="ConditionSql"/>
+    </select>
+</mapper>

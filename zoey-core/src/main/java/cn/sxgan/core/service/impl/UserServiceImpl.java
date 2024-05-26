@@ -2,12 +2,12 @@ package cn.sxgan.core.service.impl;
 
 
 import cn.hutool.core.util.StrUtil;
+import cn.sxgan.common.entity.SysUser;
+import cn.sxgan.common.entity.SysUserVO;
 import cn.sxgan.common.entity.UserSessionInfo;
-import cn.sxgan.core.entity.SysUser;
-import cn.sxgan.core.entity.SysUserVO;
-import cn.sxgan.core.entity.converts.SysUserConvert;
-import cn.sxgan.core.entity.query.SysUserQuery;
-import cn.sxgan.core.mapper.SysUserMapper;
+import cn.sxgan.common.entity.converts.SysUserConvert;
+import cn.sxgan.common.entity.query.SysUserQuery;
+import cn.sxgan.common.mapper.SysUserMapper;
 import cn.sxgan.core.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import jakarta.annotation.Resource;

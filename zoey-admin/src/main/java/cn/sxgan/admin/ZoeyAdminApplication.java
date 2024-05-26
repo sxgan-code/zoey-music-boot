@@ -1,8 +1,10 @@
 package cn.sxgan.admin;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @Description: 管理启动类
@@ -12,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 @EnableDubbo
 @SpringBootApplication
+@MapperScan("cn.sxgan.common.mapper")
+@ComponentScan(basePackages = {"cn.sxgan.admin", "cn.sxgan.common",})
 public class ZoeyAdminApplication {
     
     public static void main(String[] args) {

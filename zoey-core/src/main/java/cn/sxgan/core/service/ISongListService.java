@@ -1,8 +1,8 @@
 package cn.sxgan.core.service;
 
 import cn.sxgan.common.entity.UserSessionInfo;
+import cn.sxgan.common.entity.vo.MusicListVO;
 import cn.sxgan.common.response.ResponseResult;
-import cn.sxgan.core.entity.vo.MusicListVO;
 
 import java.util.List;
 import java.util.Map;

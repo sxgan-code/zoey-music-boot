@@ -1,15 +1,15 @@
 package cn.sxgan.core.service.impl;
 
+import cn.sxgan.common.entity.MusicList;
 import cn.sxgan.common.entity.MusicSong;
+import cn.sxgan.common.entity.converts.IMusicListConvert;
+import cn.sxgan.common.entity.converts.IMusicSongConvert;
+import cn.sxgan.common.entity.vo.MusicListVO;
+import cn.sxgan.common.entity.vo.MusicSongVO;
+import cn.sxgan.common.entity.vo.RecommendVO;
+import cn.sxgan.common.mapper.IMusicListMapper;
+import cn.sxgan.common.mapper.IMusicSongMapper;
 import cn.sxgan.common.response.ResponseResult;
-import cn.sxgan.core.entity.MusicList;
-import cn.sxgan.core.entity.converts.IMusicListConvert;
-import cn.sxgan.core.entity.converts.IMusicSongConvert;
-import cn.sxgan.core.entity.vo.MusicListVO;
-import cn.sxgan.core.entity.vo.MusicSongVO;
-import cn.sxgan.core.entity.vo.RecommendVO;
-import cn.sxgan.core.mapper.IMusicListMapper;
-import cn.sxgan.core.mapper.IMusicSongMapper;
 import cn.sxgan.core.service.IMusicListService;
 import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;

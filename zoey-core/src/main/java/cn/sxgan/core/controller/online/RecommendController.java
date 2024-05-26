@@ -1,9 +1,9 @@
 package cn.sxgan.core.controller.online;
 
+import cn.sxgan.common.entity.vo.MusicListVO;
+import cn.sxgan.common.entity.vo.RecommendVO;
 import cn.sxgan.common.response.ResponseResult;
 import cn.sxgan.core.api.online.IRecommendControllerApi;
-import cn.sxgan.core.entity.vo.MusicListVO;
-import cn.sxgan.core.entity.vo.RecommendVO;
 import cn.sxgan.core.service.IMusicListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

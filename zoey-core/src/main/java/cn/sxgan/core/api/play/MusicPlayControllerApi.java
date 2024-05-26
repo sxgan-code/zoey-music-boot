@@ -1,6 +1,6 @@
 package cn.sxgan.core.api.play;
 
-import cn.sxgan.core.entity.vo.RecommendVO;
+import cn.sxgan.common.entity.vo.RecommendVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

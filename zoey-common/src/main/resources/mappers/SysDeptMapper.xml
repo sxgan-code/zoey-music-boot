@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.sxgan.common.mapper.ISysDeptMapper">
+    <resultMap id="BaseResultMap" type="cn.sxgan.common.entity.SysDept">
+        <result property="deptId" column="dept_id"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="deptNo" column="dept_no"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="BaseColumnList">
+        dept_id,
+            dept_name,
+            dept_no,
+            create_time,
+            update_time,
+            del_flag
+    </sql>
+    <sql id="ConditionSql">
+        <where>
+            <if test="deptId != null">
+                and dept_id = #{deptId,jdbcType=INT}
+            </if>
+            <if test="deptName != null">
+                and dept_name = #{deptName,jdbcType=VARCHAR}
+            </if>
+            <if test="deptNo != null">
+                and dept_no = #{deptNo,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=DATETIME}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=DATETIME}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag,jdbcType=TINYINT}
+            </if>
+            <if test="createStartDate != null">
+                and create_time <![CDATA[ >= ]]> #{createStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createEndDate != null">
+                and create_time <![CDATA[ <= ]]> #{createEndDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateStartDate != null">
+                and update_time <![CDATA[ >= ]]> #{updateStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateEndDate != null">
+                and update_time <![CDATA[ <= ]]> #{updateEndDate,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </sql>
+    <select id="selectSysDeptByCondition" resultType="cn.sxgan.common.entity.SysDept" resultMap="BaseResultMap"
+            parameterType="cn.sxgan.common.entity.query.SysDeptQuery">
+        select
+        <include refid="BaseColumnList"/>
+        from sys_dept
+        <include refid="ConditionSql"/>
+    </select>
+</mapper>

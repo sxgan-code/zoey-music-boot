@@ -1,8 +1,8 @@
 package cn.sxgan.core.api.list;
 
+import cn.sxgan.common.entity.vo.MusicListVO;
+import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.response.ResponseResult;
-import cn.sxgan.core.entity.vo.MusicListVO;
-import cn.sxgan.core.entity.vo.MusicSongVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

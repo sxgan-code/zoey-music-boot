@@ -3,10 +3,10 @@ package cn.sxgan.core.controller.auth;
 
 import cn.hutool.core.util.StrUtil;
 import cn.sxgan.common.constant.ExceptionStatus;
+import cn.sxgan.common.entity.SysUserVO;
 import cn.sxgan.common.entity.UserSessionInfo;
 import cn.sxgan.common.response.ResponseResult;
 import cn.sxgan.core.api.auth.IAuthControllerApi;
-import cn.sxgan.core.entity.SysUserVO;
 import cn.sxgan.core.http.RequestHolder;
 import cn.sxgan.core.service.impl.AuthServiceImpl;
 import cn.sxgan.core.service.impl.MailSendServiceImpl;

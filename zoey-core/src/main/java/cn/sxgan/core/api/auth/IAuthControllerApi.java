@@ -1,9 +1,9 @@
 package cn.sxgan.core.api.auth;
 
 
+import cn.sxgan.common.entity.SysUserVO;
 import cn.sxgan.common.entity.UserSessionInfo;
 import cn.sxgan.common.response.ResponseResult;
-import cn.sxgan.core.entity.SysUserVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

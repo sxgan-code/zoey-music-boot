@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
  **/
 @EnableDubbo
 @SpringBootApplication
-@MapperScan("cn.sxgan.core.mapper")
+@MapperScan("cn.sxgan.common.mapper")
 @ComponentScan(basePackages = {"cn.sxgan.core", "cn.sxgan.common",})
 @ServletComponentScan(basePackages = "cn.sxgan.core.filter")
 public class ZoeyMusicApplication {

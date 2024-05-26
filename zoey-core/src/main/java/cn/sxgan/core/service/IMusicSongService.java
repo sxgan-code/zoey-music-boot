@@ -1,8 +1,8 @@
 package cn.sxgan.core.service;
 
+import cn.sxgan.common.entity.vo.MusicListVO;
+import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.response.ResponseResult;
-import cn.sxgan.core.entity.vo.MusicListVO;
-import cn.sxgan.core.entity.vo.MusicSongVO;
 
 import java.util.List;
 
