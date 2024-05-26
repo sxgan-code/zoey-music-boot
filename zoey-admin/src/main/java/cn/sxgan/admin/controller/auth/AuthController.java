@@ -1,5 +1,6 @@
 package cn.sxgan.admin.controller.auth;
 
+import cn.sxgan.admin.api.auth.IAuthControllerApi;
 import cn.sxgan.common.entity.UserSessionInfo;
 import cn.sxgan.common.response.ResponseResult;
 import cn.sxgan.common.rpc.auth.IDubboAuthService;
@@ -22,7 +23,7 @@ import java.util.Map;
 @RestController
 @Slf4j
 @RequestMapping("/admin/auth/")
-public class AuthController {
+public class AuthController implements IAuthControllerApi {
     
     @DubboReference(version = "v2.0.0")
     IDubboAuthService iDubboAuthService;

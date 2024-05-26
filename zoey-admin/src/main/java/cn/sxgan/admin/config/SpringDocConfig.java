@@ -1,4 +1,5 @@
-package cn.sxgan.core.config;
+package cn.sxgan.admin.config;
+
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -16,14 +17,14 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 public class SpringDocConfig {
-
+    
     @Bean
     public OpenAPI defaultOpenAPI() {
         return new OpenAPI().
                 info(info())
                 .externalDocs(documentation());
     }
-
+    
     public Info info() {
         return new Info()
                 .title("zoey music boot")
@@ -31,13 +32,13 @@ public class SpringDocConfig {
                 .description("zoey music boot spring doc open api")
                 .license(new License().name("Apache-2.0").url("https://www.apache.org/licenses/LICENSE-2.0"))
                 .contact(new Contact().name("sxgan").url("https://gitee.com/sxgan"))
-                .summary("音乐核心系统");
+                .summary("音乐管理系统");
     }
-
+    
     public ExternalDocumentation documentation() {
         return new ExternalDocumentation().description("zoey music boot spring doc")
-                .url("http://localhost:8080/v3/api-docs");
+                .url("http://localhost:8888/v3/api-docs");
     }
-
-
+    
+    
 }

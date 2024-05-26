@@ -1,10 +1,13 @@
 package cn.sxgan.admin.controller.file;
 
 import cn.sxgan.admin.api.file.FileManageControllerApi;
-import cn.sxgan.common.entity.MusicSong;
+import cn.sxgan.admin.service.impl.FileManageServiceImpl;
 import cn.sxgan.common.entity.Page;
+import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.response.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/file")
 public class FileManageController implements FileManageControllerApi {
     
+    @Autowired
+    private FileManageServiceImpl fileManageService;
     
     @Override
     @PostMapping("/song/list")
-    public ResponseResult<Page<MusicSong>> getSongList(Page<MusicSong> page) {
-        
-        return null;
+    public ResponseResult<Page<MusicSongVO>> getSongList(@RequestBody Page<MusicSongVO> page) {
+        page.setList(fileManageService.getAllSongFile(page));
+        return ResponseResult.success(page);
     }
 }

@@ -1,5 +1,6 @@
 package cn.sxgan.admin.service;
 
+import cn.sxgan.common.entity.Page;
 import cn.sxgan.common.entity.vo.MusicSongVO;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface IFileManageService {
     /**
      * 获取全部歌曲文件
      */
-    List<MusicSongVO> getAllSongFile();
+    List<MusicSongVO> getAllSongFile(Page<MusicSongVO> page);
 }
