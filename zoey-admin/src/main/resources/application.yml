@@ -13,11 +13,11 @@ logging:
     root: info
     cn.sxgan.mapper: debug
 # PageHelper 分页插件配置
-#pagehelper:
-#  helper-dialect: mysql
-#  reasonable: true
-#  support-methods-arguments: true
-#  params: count=countsql
+pagehelper:
+  helper-dialect: mysql
+  pagehelper.params: count=countSql
+  reasonable: true
+  support-methods-arguments: true
 # 项目相关配置
 zoey:
   # 标题

@@ -1,6 +1,6 @@
 package cn.sxgan.admin.api.file;
 
-import cn.sxgan.common.entity.Page;
+import cn.sxgan.common.entity.MyPage;
 import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.response.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,11 +22,11 @@ import java.util.List;
 public interface FileManageControllerApi {
     @Operation(summary = "获取所有歌曲文件", description = "获取所有歌曲文件",
             parameters = {
-                    @Parameter(name = "page", description = "分页对象", content = @Content(mediaType = "application/json", schema = @Schema(contentSchema = Page.class)))
+                    @Parameter(name = "page", description = "分页对象", content = @Content(mediaType = "application/json", schema = @Schema(contentSchema = MyPage.class)))
             },
             responses = {
                     @ApiResponse(description = "返回查询列表结果", content = @Content(mediaType = "application/json", schema = @Schema(implementation = List.class))),
                     @ApiResponse(responseCode = "700~800", description = "系统权限校验业务错误")
             })
-    ResponseResult<Page<MusicSongVO>> getSongList(Page<MusicSongVO> page);
+    ResponseResult<MyPage<MusicSongVO>> getSongList(MyPage<MusicSongVO> page);
 }

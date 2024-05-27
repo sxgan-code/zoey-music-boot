@@ -2,13 +2,11 @@ package cn.sxgan.admin.service.impl;
 
 import cn.sxgan.admin.service.IFileManageService;
 import cn.sxgan.common.entity.MusicSong;
-import cn.sxgan.common.entity.Page;
+import cn.sxgan.common.entity.MyPage;
 import cn.sxgan.common.entity.converts.IMusicSongConvert;
 import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.mapper.IMusicSongMapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -27,15 +25,14 @@ public class FileManageServiceImpl implements IFileManageService {
     private IMusicSongMapper iMusicSongMapper;
     
     @Override
-    public List<MusicSongVO> getAllSongFile(Page<MusicSongVO> page) {
+    public List<MusicSongVO> getAllSongFile(MyPage<MusicSongVO> page) {
         // 根据分页获取对应数据
-        Integer pageNum = page.getCurrentIndex();
-        Integer pageSize = page.getPageSize();
-        PageHelper.startPage(pageNum, pageSize);
-        List<MusicSong> musicSongs = iMusicSongMapper.selectList(new QueryWrapper<>());
-        PageInfo<MusicSong> musicSongPageInfo = new PageInfo<>();
-        long total = musicSongPageInfo.getTotal();
-        page.setPageTotal(Integer.parseInt(String.valueOf(total)));
+        Long pageNum = page.getCurrentIndex();
+        Long pageSize = page.getPageSize();
+        Page<MusicSong> musicSongPage = iMusicSongMapper.selectPage(new Page<>(pageNum, pageSize), null);
+        List<MusicSong> musicSongs = musicSongPage.getRecords();
+        page.setDataTotal(musicSongPage.getTotal());
+        page.setPageTotal(musicSongPage.getPages());
         return IMusicSongConvert.INSTANCE.convertList(musicSongs);
     }
 }
