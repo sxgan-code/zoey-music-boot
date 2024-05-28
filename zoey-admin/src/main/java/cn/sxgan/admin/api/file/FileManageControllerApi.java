@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -29,4 +30,14 @@ public interface FileManageControllerApi {
                     @ApiResponse(responseCode = "700~800", description = "系统权限校验业务错误")
             })
     ResponseResult<MyPage<MusicSongVO>> getSongList(MyPage<MusicSongVO> page);
+    
+    @Operation(summary = "更新歌曲文件", description = "更新歌曲文件",
+            parameters = {
+                    @Parameter(name = "songVO", description = "歌曲实体类", content = @Content(mediaType = "application/json", schema = @Schema(contentSchema = MusicSongVO.class)))
+            },
+            responses = {
+                    @ApiResponse(description = "返回更新结果", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+                    @ApiResponse(responseCode = "700~800", description = "系统权限校验业务错误")
+            })
+    ResponseResult<String> updateSong(@RequestBody MusicSongVO songVO);
 }

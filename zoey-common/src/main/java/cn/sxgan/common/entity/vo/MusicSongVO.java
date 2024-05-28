@@ -43,7 +43,7 @@ public class MusicSongVO implements Serializable {
     private String songStyle;
     
     @Schema(description = "歌曲发行时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date releaseDate;
     
     @Schema(description = "所属专辑")

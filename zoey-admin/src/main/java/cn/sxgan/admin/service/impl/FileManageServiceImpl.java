@@ -6,8 +6,11 @@ import cn.sxgan.common.entity.MyPage;
 import cn.sxgan.common.entity.converts.IMusicSongConvert;
 import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.mapper.IMusicSongMapper;
+import cn.sxgan.common.response.ResponseResult;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +21,7 @@ import java.util.List;
  * @Date: 2024-05-26 21:28
  * @Version: 1.0
  **/
+@Slf4j
 @Service
 public class FileManageServiceImpl implements IFileManageService {
     
@@ -34,5 +38,18 @@ public class FileManageServiceImpl implements IFileManageService {
         page.setDataTotal(musicSongPage.getTotal());
         page.setPageTotal(musicSongPage.getPages());
         return IMusicSongConvert.INSTANCE.convertList(musicSongs);
+    }
+    
+    @Override
+    public ResponseResult<String> updateSongInfo(MusicSongVO songVO) {
+        log.info("FileManageServiceImpl updateSongInfo: {}", songVO);
+        MusicSong musicSong = IMusicSongConvert.INSTANCE.convert(songVO);
+        // 更新歌曲信息
+        int update = iMusicSongMapper.update(musicSong, new UpdateWrapper<MusicSong>().eq("song_id", songVO.getSongId()));
+        
+        if (update > 0) {
+            return ResponseResult.success("更新成功");
+        }
+        return ResponseResult.fail("更新失败");
     }
 }

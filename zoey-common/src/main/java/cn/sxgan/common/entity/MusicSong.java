@@ -45,10 +45,6 @@ public class MusicSong {
     @Schema(description = "歌曲图片地址", type = "String")
     private String songPic;
     
-    public String getSongPic() {
-        return songPic + "?time=" + System.currentTimeMillis();
-    }
-    
     /**
      * 歌词文件地址
      */
