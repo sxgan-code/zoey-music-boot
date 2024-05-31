@@ -56,5 +56,5 @@ public class FileConst {
     public static final String CAROUSEL_IMAGE_PATH = "/resources/ClientImg/mainpage/";
     
     // 返回歌单图片相对地址
-    public static final String SONG_LIST_IMAGE_PATH = "/resources/image/songListImg/";
+    public static final String SONG_IMAGE_PATH = "/resources/data/song/image/";
 }
