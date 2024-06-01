@@ -28,20 +28,24 @@ public class FileUploadUtils {
     /**
      * 上传文件到项目指定目录
      *
-     * @param file 上传的文件 (必传项)
-     * @param path 需要保存到项目根目录下的路径(必传项)
-     * @param type 文件扩展名类型(非必传项：可传null,表示以当前文件类型保存；指定类型则会校验上传文件与指定类型是否相同)
+     * @param file            上传的文件 (必传项)
+     * @param path            需要保存到项目根目录下的路径(必传项)
+     * @param type            需要上传的文件类型限定(非必传项：默认null，表示不校验文件类型直接保存)
+     * @param isAddTimeSuffix 是否给文件名添加时间戳(非必传项：默认false，表示不添加时间戳)
      * @return String  是否上传成功 文件保存则返回相对路径，失败返回null
      */
-    public static String uploadFile(MultipartFile file, String path, String type) {
+    public static String uploadFile(MultipartFile file, String path, String[] type, Boolean isAddTimeSuffix) {
         // 判断上传文件是否为空
         if (file == null || path == null) return null;
         // 判断上传文件与指定类型是否相等
         String originalFilename = file.getOriginalFilename();
+        String fileType;
         if (type != null) {
-            String fileType = originalFilename.split("[.]")[1];
-            if (!fileType.equals(type)) {
-                return null;
+            fileType = originalFilename.split("[.]")[1];
+            for (String t : type) {
+                if (!t.equals(fileType)) {
+                    return null;
+                }
             }
         }
         // 完整的文件路径，不带文件
@@ -51,7 +55,12 @@ public class FileUploadUtils {
             fileDir.mkdirs();
         }
         // 给文件加时间戳的文件名
-        originalFilename = originalFilename.split("[.]")[0] + "_" + new Date().getTime() + "." + originalFilename.split("[.]")[1];
+        if (isAddTimeSuffix != null && isAddTimeSuffix) {
+            originalFilename = originalFilename.split("[.]")[0] + "_" + new Date().getTime() + "." + originalFilename.split("[.]")[1];
+        } else {
+            originalFilename = originalFilename.split("[.]")[0] + "." + originalFilename.split("[.]")[1];
+        }
+        
         // 带文件的完整路径
         File allFilePath = new File(fileDir, originalFilename);
         // 声明

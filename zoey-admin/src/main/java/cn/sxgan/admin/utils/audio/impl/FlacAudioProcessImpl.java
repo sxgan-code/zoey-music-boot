@@ -40,7 +40,8 @@ public class FlacAudioProcessImpl implements IAudioProcess {
     }
     
     @Override
-    public void process(File file1) {
+    public MusicSong process(File file1) {
+        MusicSong musicSong = new MusicSong();
         try {
             FlacFileReader flacFileReader = new FlacFileReader();
             AudioFile audioFile = flacFileReader.read(file1);
@@ -58,7 +59,7 @@ public class FlacAudioProcessImpl implements IAudioProcess {
                 File copyFile = FileUtils.copyFileToDir(file1, FileConst.FLAC_SONG_PATH);
                 String songUrl = copyFile.getAbsolutePath().replaceAll("\\\\", "/");
                 // 1、获取歌曲信息
-                MusicSong musicSong = new MusicSong();
+                
                 musicSong.setSongId(songId);
                 musicSong.setAlbumId(albumId);
                 musicSong.setSingerId(singerId);
@@ -94,6 +95,7 @@ public class FlacAudioProcessImpl implements IAudioProcess {
                 musicSinger.setSingerName(singerName);
                 musicSinger.setAddress("中国");
                 musicSinger.setSingerPic(musicSong.getSongPic());
+                musicSong.setMusicSinger(musicSinger);
                 // 3、获取专辑信息
                 MusicAlbum musicAlbum = new MusicAlbum();
                 String albumName = tag.getFields("ALBUM").getFirst().toString();
@@ -105,24 +107,24 @@ public class FlacAudioProcessImpl implements IAudioProcess {
                 musicAlbum.setReleaseDate(musicSong.getReleaseDate());
                 musicAlbum.setAlbumName(albumName);
                 musicAlbum.setSingerId(musicSong.getSingerId());
+                musicSong.setMusicAlbum(musicAlbum);
                 // 4、生成脚本
-                if (!CommonUtils.checkIsNullOrEmpty(songName)
-                        && !CommonUtils.checkIsNullOrEmpty(singerName)
-                        && !CommonUtils.checkIsNullOrEmpty(albumName)) {
-                    AudioUtil.buildSongSql(musicSong);
-                    AudioUtil.buildSingerSql(musicSinger);
-                    AudioUtil.buildAlbumSql(musicAlbum);
-                } else {
-                    log.error("文件信息不完整，无法生成脚本，文件路径为->{}", copyFile.getAbsolutePath());
-                }
-                
-                
+                // if (!CommonUtils.checkIsNullOrEmpty(songName)
+                //         && !CommonUtils.checkIsNullOrEmpty(singerName)
+                //         && !CommonUtils.checkIsNullOrEmpty(albumName)) {
+                //     AudioUtil.buildSongSql(musicSong);
+                //     AudioUtil.buildSingerSql(musicSinger);
+                //     AudioUtil.buildAlbumSql(musicAlbum);
+                // } else {
+                //     log.error("文件信息不完整，无法生成脚本，文件路径为->{}", copyFile.getAbsolutePath());
+                // }
             }
         } catch (IOException | CannotReadException | TagException | InvalidAudioFrameException e) {
             e.printStackTrace();
         } catch (ReadOnlyFileException e) {
             throw new RuntimeException(e);
         }
+        return musicSong;
     }
     
     private String getImage(FlacTag tag, String string) throws IOException {

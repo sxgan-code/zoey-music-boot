@@ -6,6 +6,11 @@ spring:
     #    include: prodb
     active: dev
     include: devdb
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      enabled: true
+      max-request-size: 100MB
 
 logging:
   config: classpath:logback.xml

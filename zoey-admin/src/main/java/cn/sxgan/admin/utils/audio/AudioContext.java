@@ -1,6 +1,8 @@
 package cn.sxgan.admin.utils.audio;
 
 
+import cn.sxgan.common.entity.MusicSong;
+
 import java.io.File;
 
 /**
@@ -19,7 +21,7 @@ public class AudioContext {
         this.iAudioProcess = strategy;
     }
     
-    public void use(File file) {
-        iAudioProcess.process(file);
+    public MusicSong use(File file) {
+        return iAudioProcess.process(file);
     }
 }

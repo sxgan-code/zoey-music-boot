@@ -198,15 +198,37 @@ public class FileUtils {
         return getFileExtension(filePath);
     }
     
-    // 根据文件类型获取文件系统路径
     
-    public static String getFilePathByType(String fileName) {
+    /**
+     * 根据文件类型获取文件系统绝对路径
+     *
+     * @param fileName
+     * @return
+     */
+    public static String getFileAbsolutePathByType(String fileName) {
         String fileExtension = getFileExtension(fileName);
         switch (fileExtension) {
             case "flac":
-                return FileConst.FLAC_SONG_PATH + fileName;
+                return FileConst.PROJECT_URL + FileConst.FLAC_SONG_PATH + fileName;
             case "mp3":
-                return FileConst.MP3_IMG_PATH + fileName;
+                return FileConst.PROJECT_URL + FileConst.MP3_IMG_PATH + fileName;
+        }
+        return "";
+    }
+    
+    /**
+     * 根据文件类型获取文件相对路径(不包含文件名)
+     *
+     * @param fileName 文件名
+     * @return 相对路径
+     */
+    public static String getFileRelativePathByType(String fileName) {
+        String fileExtension = getFileExtension(fileName);
+        switch (fileExtension) {
+            case "flac":
+                return FileConst.FLAC_SONG_PATH;
+            case "mp3":
+                return FileConst.MP3_IMG_PATH;
         }
         return "";
     }

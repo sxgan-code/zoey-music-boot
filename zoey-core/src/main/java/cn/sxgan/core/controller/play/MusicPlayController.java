@@ -27,7 +27,7 @@ public class MusicPlayController {
     
     @GetMapping(value = "/music/{filename}")
     public ResponseEntity<Resource> getPlayMusicStream(@PathVariable String filename) {
-        String filePathByType = FileUtils.getFilePathByType(filename);
+        String filePathByType = FileUtils.getFileAbsolutePathByType(filename);
         Path audioDirectory = Paths.get(filePathByType);
         try {
             Resource resource = new UrlResource(audioDirectory.toUri());

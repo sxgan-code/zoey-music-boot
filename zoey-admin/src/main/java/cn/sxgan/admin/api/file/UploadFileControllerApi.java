@@ -1,5 +1,6 @@
 package cn.sxgan.admin.api.file;
 
+import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.response.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -26,4 +27,14 @@ public interface UploadFileControllerApi {
                     @ApiResponse(responseCode = "700~800", description = "系统权限校验业务错误")
             })
     ResponseResult<String> uploadSingleFile(MultipartFile file);
+    
+    @Operation(summary = "上传歌曲文件进行处理", description = "上传歌曲文件进行处理",
+            parameters = {
+                    @Parameter(name = "file", description = "文件对象", content = @Content(mediaType = "multipart/form-data", schema = @Schema(contentSchema = MultipartFile.class)))
+            },
+            responses = {
+                    @ApiResponse(description = "返回上传解析结果", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MusicSongVO.class))),
+                    @ApiResponse(responseCode = "700~800", description = "系统权限校验业务错误")
+            })
+    ResponseResult<MusicSongVO> songFileUploadApi(MultipartFile file);
 }

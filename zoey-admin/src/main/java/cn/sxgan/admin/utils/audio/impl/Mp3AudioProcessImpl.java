@@ -1,6 +1,7 @@
 package cn.sxgan.admin.utils.audio.impl;
 
 import cn.sxgan.admin.utils.audio.IAudioProcess;
+import cn.sxgan.common.entity.MusicSong;
 import lombok.extern.slf4j.Slf4j;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.mp3.MP3File;
@@ -21,7 +22,7 @@ import java.io.File;
 @Slf4j
 public class Mp3AudioProcessImpl implements IAudioProcess {
     @Override
-    public void process(File file) {
+    public MusicSong process(File file) {
         // mp3文件
         MP3File mp3File = null;
         try {
@@ -41,7 +42,7 @@ public class Mp3AudioProcessImpl implements IAudioProcess {
                 // 歌曲图片
                 byte[] mp3Image = getMp3Image(file);
             }
-            
+            return null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

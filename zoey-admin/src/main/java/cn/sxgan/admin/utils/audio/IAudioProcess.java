@@ -1,5 +1,7 @@
 package cn.sxgan.admin.utils.audio;
 
+import cn.sxgan.common.entity.MusicSong;
+
 import java.io.File;
 
 /**
@@ -13,5 +15,5 @@ public interface IAudioProcess {
     /**
      * 每种音频处理的方法
      */
-    void process(File audioFile);
+    MusicSong process(File audioFile);
 }
