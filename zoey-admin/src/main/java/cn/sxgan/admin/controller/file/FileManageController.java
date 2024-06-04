@@ -36,4 +36,10 @@ public class FileManageController implements FileManageControllerApi {
     public ResponseResult<String> updateSong(@RequestBody MusicSongVO songVO) {
         return fileManageService.updateSongInfo(songVO);
     }
+    
+    @Override
+    @PostMapping("/song/search")
+    public ResponseResult<MyPage<MusicSongVO>> searchSong(@RequestBody MusicSongVO songVO) {
+        return fileManageService.searchSongList(songVO);
+    }
 }

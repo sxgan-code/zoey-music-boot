@@ -20,4 +20,6 @@ public interface IFileManageService {
     List<MusicSongVO> getAllSongFile(MyPage<MusicSongVO> page);
     
     ResponseResult<String> updateSongInfo(MusicSongVO songVO);
+    
+    ResponseResult<MyPage<MusicSongVO>> searchSongList(MusicSongVO songVO);
 }

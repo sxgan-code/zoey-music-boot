@@ -26,5 +26,5 @@ public interface MusicPlayControllerApi {
                                     schema = @Schema(implementation = RecommendVO.class))),
                     @ApiResponse(responseCode = "700~1000", description = "系统业务错误")
             })
-    public ResponseEntity<Resource> getPlayMusicStream(String path);
+    ResponseEntity<Resource> getPlayMusicStream(String path);
 }

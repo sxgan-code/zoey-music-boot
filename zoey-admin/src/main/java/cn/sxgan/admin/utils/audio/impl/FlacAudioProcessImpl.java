@@ -6,6 +6,7 @@ import cn.sxgan.common.constant.FileConst;
 import cn.sxgan.common.entity.MusicAlbum;
 import cn.sxgan.common.entity.MusicSinger;
 import cn.sxgan.common.entity.MusicSong;
+import cn.sxgan.common.mapper.IMusicAlbumMapper;
 import cn.sxgan.common.utils.CommonUtils;
 import cn.sxgan.common.utils.DateUtils;
 import cn.sxgan.common.utils.FileUtils;
@@ -18,6 +19,8 @@ import org.jaudiotagger.audio.flac.FlacFileReader;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.flac.FlacTag;
 import org.jaudiotagger.tag.images.Artwork;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +33,11 @@ import java.util.Date;
  * @Version: 1.0
  **/
 @Slf4j
+@Service
 public class FlacAudioProcessImpl implements IAudioProcess {
+    
+    @Autowired
+    private IMusicAlbumMapper iMusicAlbumMapper;
     
     // 初始化文件路径*/
     static {
@@ -59,7 +66,6 @@ public class FlacAudioProcessImpl implements IAudioProcess {
                 File copyFile = FileUtils.copyFileToDir(file1, FileConst.FLAC_SONG_PATH);
                 String songUrl = copyFile.getAbsolutePath().replaceAll("\\\\", "/");
                 // 1、获取歌曲信息
-                
                 musicSong.setSongId(songId);
                 musicSong.setAlbumId(albumId);
                 musicSong.setSingerId(singerId);
@@ -108,16 +114,6 @@ public class FlacAudioProcessImpl implements IAudioProcess {
                 musicAlbum.setAlbumName(albumName);
                 musicAlbum.setSingerId(musicSong.getSingerId());
                 musicSong.setMusicAlbum(musicAlbum);
-                // 4、生成脚本
-                // if (!CommonUtils.checkIsNullOrEmpty(songName)
-                //         && !CommonUtils.checkIsNullOrEmpty(singerName)
-                //         && !CommonUtils.checkIsNullOrEmpty(albumName)) {
-                //     AudioUtil.buildSongSql(musicSong);
-                //     AudioUtil.buildSingerSql(musicSinger);
-                //     AudioUtil.buildAlbumSql(musicAlbum);
-                // } else {
-                //     log.error("文件信息不完整，无法生成脚本，文件路径为->{}", copyFile.getAbsolutePath());
-                // }
             }
         } catch (IOException | CannotReadException | TagException | InvalidAudioFrameException e) {
             e.printStackTrace();

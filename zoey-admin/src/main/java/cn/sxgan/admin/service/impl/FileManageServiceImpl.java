@@ -4,6 +4,7 @@ import cn.sxgan.admin.service.IFileManageService;
 import cn.sxgan.common.entity.MusicSong;
 import cn.sxgan.common.entity.MyPage;
 import cn.sxgan.common.entity.converts.IMusicSongConvert;
+import cn.sxgan.common.entity.query.SearchSongQuery;
 import cn.sxgan.common.entity.vo.MusicSongVO;
 import cn.sxgan.common.mapper.IMusicSongMapper;
 import cn.sxgan.common.response.ResponseResult;
@@ -51,5 +52,19 @@ public class FileManageServiceImpl implements IFileManageService {
             return ResponseResult.success("更新成功");
         }
         return ResponseResult.fail("更新失败");
+    }
+    
+    @Override
+    public ResponseResult<MyPage<MusicSongVO>> searchSongList(MusicSongVO songVO) {
+        SearchSongQuery searchSongQuery = IMusicSongConvert.INSTANCE.convertQuery(songVO);
+        List<MusicSong> musicSongs = iMusicSongMapper.searchSongByCondition(searchSongQuery);
+        List<MusicSongVO> list = IMusicSongConvert.INSTANCE.convertList(musicSongs);
+        MyPage<MusicSongVO> page = new MyPage<>();
+        page.setPageTotal(1L);
+        page.setList(list);
+        page.setPageSize((long) list.size());
+        page.setDataTotal((long) list.size());
+        page.setCurrentIndex(1L);
+        return ResponseResult.success(page);
     }
 }

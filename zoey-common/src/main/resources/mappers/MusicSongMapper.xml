@@ -124,8 +124,38 @@
     <select id="randomSelectSong" resultType="cn.sxgan.common.entity.MusicSong" resultMap="BaseResultMap">
         select *
         from music_song song
+                 left join music_singer singer on song.singer_id = singer.singer_id
+                 left join music_album album on song.album_id = album.album_id
+        order by rand()
+        limit 1
+    </select>
+
+    <select id="searchSongByCondition" resultType="cn.sxgan.common.entity.MusicSong" resultMap="BaseResultMap"
+            parameterType="cn.sxgan.common.entity.query.SearchSongQuery">
+        <!--@mbg.generated-->
+        select *
+        from music_song song
         left join music_singer singer on song.singer_id = singer.singer_id
         left join music_album album on song.album_id = album.album_id
-        order by rand() limit 1
+        <where>
+            <if test="songName != null">
+                and song.song_name like concat('%',#{songName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="singerName != null">
+                and singer.singer_name like concat('%',#{singerName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="albumName != null">
+                and album.album_name like concat('%',#{albumName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="releaseDate != null">
+                and song.release_date = #{releaseDate,jdbcType=DATETIME}
+            </if>
+            <if test="createTime != null">
+                and song.create_time = #{createTime,jdbcType=DATETIME}
+            </if>
+            <if test="updateTime != null">
+                and song.update_time = #{updateTime,jdbcType=DATETIME}
+            </if>
+        </where>
     </select>
 </mapper>
